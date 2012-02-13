@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>Activities - Flattr Developers</title>
+
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/custom.css">
+  <link rel="stylesheet" href="/styles/syntax.css">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/">Flattr Developer Platform</a></h1>
+
+    <ul class="nav">
+      <li>
+        <a href="/api">REST API</a>
+        <ul>
+          <li>
+            <span>Resources</span>
+            <ul>
+              <li><a href="/api/resources/flattrs">Flattrs</a></li>
+              <li><a href="/api/resources/things">Things</a></li>
+              <li><a href="/api/resources/users">Users</a></li>
+              <li><a href="/api/resources/activities">Activities</a></li>
+              <li><a href="/api/resources/categories">Categories</a></li>
+              <li><a href="/api/resources/languages">Languages</a></li>
+            </ul>
+          </li>
+          <li><a href="/api/changelog">Changelog</a></li>
+          <li><a href="/api/libraries">Libraries</a></li>
+          <li><a href="/api/policy">Policy</a></li>
+        </ul>
+      </li>
+      <li><a href="/button">Embedded buttons</a></li>
+      <li><a href="/auto-submit">Auto-submit URL</a></li>
+      <li><a href="/feed">Flattr in feeds</a></li>
+      <li><a href="/partner">Partner Site Integration</a></li>
+      <li><a href="/api/questions">Questions</a></li>
+
+    </ul>
+
+    <div class="page">
+      <div class="header">
+        <h2>Activities</h2>
+        <div class="subtitle"></div>
+      </div>
+      <blockquote>
+<p>Only Atom (.atom) and JSON (.as) Activity Streams responses supported</p>
+</blockquote>
+<h4 id="list-an-users-activities">List an users activities</h4>
+<p>The default activities are outgoing activities, what the user has done.
+If you instead want to get a users incoming activities set the <code>type</code>
+parameter to <code>incoming</code>.</p>
+<h5 >Parameters</h5>
+<ul>
+<li><strong>type</strong> ( <em>Optional</em> ) - Can be set to <code>incoming</code> or <code>outgoing</code>, default: <code>outgoing</code></li>
+</ul>
+<h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/users/:username/activities
+</code></pre><h5 >Example response</h5>
+<pre class="headers"><code>Status: 200 OK
+Content-type: application/stream+json
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999</code></pre>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;items&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;published&quot;</span><span class="o">:</span> <span class="s2">&quot;2012-01-04T10:07:12+01:00&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;pthulin flattred \&quot;Acoustid\&quot;&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;actor&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;displayName&quot;</span><span class="o">:</span> <span class="s2">&quot;pthulin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.dev/profile/pthulin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;objectType&quot;</span><span class="o">:</span> <span class="s2">&quot;person&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;verb&quot;</span><span class="o">:</span> <span class="s2">&quot;like&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;object&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;displayName&quot;</span><span class="o">:</span> <span class="s2">&quot;Acoustid&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.dev/thing/459394/Acoustid&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;objectType&quot;</span><span class="o">:</span> <span class="s2">&quot;bookmark&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;tag:flattr.com,2012-01-04:pthulin/flattr/459394&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre>
+</div>
+<h4 id="list-a-authenticated-users-activities">List a authenticated users activities</h4>
+<p><em><a href="#authenticated_call">Authentication</a> needed</em></p>
+<h5 >Parameters</h5>
+<ul>
+<li><strong>type</strong> ( <em>Optional</em> ) - Can be set to <code>incoming</code> or <code>outgoing</code>, default: <code>outgoing</code></li>
+</ul>
+<h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/user/activities
+</code></pre><h5 >Example response</h5>
+<pre class="headers"><code>Status: 200 OK
+Content-type: application/stream+json
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999</code></pre>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;items&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;published&quot;</span><span class="o">:</span> <span class="s2">&quot;2012-01-04T10:07:12+01:00&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;pthulin flattred \&quot;Acoustid\&quot;&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;actor&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;displayName&quot;</span><span class="o">:</span> <span class="s2">&quot;pthulin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.dev/profile/pthulin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;objectType&quot;</span><span class="o">:</span> <span class="s2">&quot;person&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;verb&quot;</span><span class="o">:</span> <span class="s2">&quot;like&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;object&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;displayName&quot;</span><span class="o">:</span> <span class="s2">&quot;Acoustid&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.dev/thing/459394/Acoustid&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;objectType&quot;</span><span class="o">:</span> <span class="s2">&quot;bookmark&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;tag:flattr.com,2012-01-04:pthulin/flattr/459394&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+    </div>
+    <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>
+
+  </div>
+
+  <script src="/js/ender.js"></script>
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-13236450-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

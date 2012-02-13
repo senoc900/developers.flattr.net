@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>Flattr in feeds - Flattr Developers</title>
+
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/custom.css">
+  <link rel="stylesheet" href="/styles/syntax.css">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/">Flattr Developer Platform</a></h1>
+
+    <ul class="nav">
+      <li>
+        <a href="/api">REST API</a>
+        <ul>
+          <li>
+            <span>Resources</span>
+            <ul>
+              <li><a href="/api/resources/flattrs">Flattrs</a></li>
+              <li><a href="/api/resources/things">Things</a></li>
+              <li><a href="/api/resources/users">Users</a></li>
+              <li><a href="/api/resources/activities">Activities</a></li>
+              <li><a href="/api/resources/categories">Categories</a></li>
+              <li><a href="/api/resources/languages">Languages</a></li>
+            </ul>
+          </li>
+          <li><a href="/api/changelog">Changelog</a></li>
+          <li><a href="/api/libraries">Libraries</a></li>
+          <li><a href="/api/policy">Policy</a></li>
+        </ul>
+      </li>
+      <li><a href="/button">Embedded buttons</a></li>
+      <li><a href="/auto-submit">Auto-submit URL</a></li>
+      <li><a href="/feed">Flattr in feeds</a></li>
+      <li><a href="/partner">Partner Site Integration</a></li>
+      <li><a href="/api/questions">Questions</a></li>
+
+    </ul>
+
+    <div class="page">
+      <div class="header">
+        <h2>Flattr in feeds</h2>
+        <div class="subtitle"></div>
+      </div>
+      <h3 id="introduction">Introduction</h3>
+<p>If you want to include Flattr in your RSS or Atom feeds then this is the recommended way for doing so. Including Flattr in a feed can be useful for podcasts and similar but the same method can also be used in other scenarios.</p>
+
+<p>We recommend adding payment links, using a standard payment relation, that points to <a href="/auto-submit/">auto-submit URL:s</a> for the things you want to be flattrable. You could add these payment links to both the feed itself and its entries.</p>
+<h3 id="example">Example</h3>
+<p>In an Atom feed add something like this to either the feed itself or to an entry:</p>
+<div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;payment&quot;</span> <span class="na">href=</span><span class="s">&quot;https://flattr.com/submit/auto?url=https%3A%2F%2Fdevelopers.flattr.net%2F&amp;amp;user_id=flattr&quot;</span> <span class="na">type=</span><span class="s">&quot;text/html&quot;</span> <span class="nt">/&gt;</span>
+</pre>
+</div>
+
+<p>In an item in a RSS feed add:</p>
+<div class="highlight"><pre><span class="nt">&lt;atom:link</span> <span class="na">rel=</span><span class="s">&quot;payment&quot;</span> <span class="na">href=</span><span class="s">&quot;https://flattr.com/submit/auto?url=https%3A%2F%2Fdevelopers.flattr.net%2F&amp;amp;user_id=flattr&quot;</span> <span class="na">type=</span><span class="s">&quot;text/html&quot;</span> <span class="nt">/&gt;</span>
+</pre>
+</div>
+
+<p>And make sure that the RSS-container itself knows of the atom:link-tag:</p>
+<div class="highlight"><pre><span class="nt">&lt;rss</span> <span class="na">xmlns:atom=</span><span class="s">&quot;http://www.w3.org/2005/Atom&quot;</span><span class="nt">&gt;</span>
+</pre>
+</div>
+<h3 id="client-support">Client support</h3>
+<ul>
+<li><a href="http://vemedio.com/products/instacast">Instacast</a> / <a href="http://vemedio.com/products/instacast-hd">Instacast HD</a>: <a href="http://www.vemedio.com/blog/posts/instacast-flattr-support">Announcement</a> &amp; <a href="http://vemedio.com/support/instacast#3.6">Documentation</a></li>
+</ul>
+<h3 id="provider-support">Provider support</h3>
+<ul>
+<li><a href="http://wordpress.org/extend/plugins/flattr/">WordPress Flattr plugin</a></li>
+</ul>
+<h3 id="longer-version">Longer version</h3>
+<p>What is this standard payment relation that we suggest you to use? It&#39;s the one defined in the &quot;Web Linking&quot; standard <a href="http://tools.ietf.org/html/rfc5988#page-14">RFC5988</a> and fits the use case perfectly, being defined as usable for eg. tipjars.</p>
+
+<p>The &quot;<a href="http://tools.ietf.org/html/rfc5988">Web Linking</a>&quot; standard defines a common link relations registry for Atom-feeds, HTML-documents, HTTP Link-headers etc. - thus this method isn&#39;t strictly limited to feeds, but feeds are the primary use case that we see.</p>
+
+<p>With <a href="/auto-submit/">auto-submit URL:s</a> as payment-links all clients already supporting payment-relations will automatically support Flattr links, but clients that wants to do Flattr specific integrations can also do so.</p>
+
+<p>Eg. mobile clients that wants a better UX-flow for Flattr can implement such by checking payment-links for <a href="/auto-submit/">auto-submit URL:s</a> (links starting with &quot;<a href="https://flattr.com/submit/auto%22">https://flattr.com/submit/auto&quot;</a>) and use those URL:s for the API resources <a href="/api/resources/things/#check-if-a-thing-exists">/things/lookup</a> and <a href="/api/resources/flattrs/#flattr-a-autosubmit-url">/flattr</a> to get more info about them or to flattr them.</p>
+
+    </div>
+    <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>
+
+  </div>
+
+  <script src="/js/ender.js"></script>
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-13236450-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

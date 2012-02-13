@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>Auto-submit URL - Flattr Developers</title>
+
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/custom.css">
+  <link rel="stylesheet" href="/styles/syntax.css">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/">Flattr Developer Platform</a></h1>
+
+    <ul class="nav">
+      <li>
+        <a href="/api">REST API</a>
+        <ul>
+          <li>
+            <span>Resources</span>
+            <ul>
+              <li><a href="/api/resources/flattrs">Flattrs</a></li>
+              <li><a href="/api/resources/things">Things</a></li>
+              <li><a href="/api/resources/users">Users</a></li>
+              <li><a href="/api/resources/activities">Activities</a></li>
+              <li><a href="/api/resources/categories">Categories</a></li>
+              <li><a href="/api/resources/languages">Languages</a></li>
+            </ul>
+          </li>
+          <li><a href="/api/changelog">Changelog</a></li>
+          <li><a href="/api/libraries">Libraries</a></li>
+          <li><a href="/api/policy">Policy</a></li>
+        </ul>
+      </li>
+      <li><a href="/button">Embedded buttons</a></li>
+      <li><a href="/auto-submit">Auto-submit URL</a></li>
+      <li><a href="/feed">Flattr in feeds</a></li>
+      <li><a href="/partner">Partner Site Integration</a></li>
+      <li><a href="/api/questions">Questions</a></li>
+
+    </ul>
+
+    <div class="page">
+      <div class="header">
+        <h2>Auto-submit URL</h2>
+        <div class="subtitle"></div>
+      </div>
+      <p>Instead of the <a href="/button/">embedded buttons</a> you can use a specific kind of URL that just like the button will autocreate, &quot;auto-submit&quot;, a Flattr thing on its first flattr. This is useful for when you can&#39;t use javascript on a site (or don’t want to) – just create a static link to an auto-submit URL instead.</p>
+
+<p>The URL format for submitting a thing is the following:
+(newlines added for better visibility)</p>
+<pre class="highlight"><code>https://flattr.com/submit/auto?\
+    user_id=[USERNAME]&amp;url=[URL]&amp;title=[TITLE]&amp;\
+    description=[DESCRIPTION]&amp;language=[LANGUAGE]&amp;\
+    tags=[TAGS]&amp;hidden=[HIDDEN]&amp;category=[CATEGORY]
+</code></pre>
+<p><em>Note</em>: The thing will submitted to our catalog when it’s flattred for the first time.</p>
+<h5 >Parameters</h5>
+<ul>
+<li><code>user_id</code> (Required) - Your username on Flattr</li>
+<li><code>url</code> (Required) - URL of the thing.</li>
+<li><code>title</code> (Optional) - Title of your your thing.</li>
+<li><code>description</code> (Optional) - Description for your thing.</li>
+<li><code>language</code> (Optional) - Language of your page, use one of the <a href="https://api.flattr.com/rest/v2/languages.txt">available languages</a>.</li>
+<li><code>tags</code> (Optional) - Tags you want your post to be tagged with. Multiple tags are separated with <code>,</code></li>
+<li><code>hidden</code> (Optional) - If you want to hide the things from public listings on flattr.com set <code>hidden</code> to <code>1</code>.</li>
+<li><code>category</code> (Optional) - Category from the list of categories <a href="https://api.flattr.com/rest/v2/categories.txt">found here</a>.</li>
+</ul>
+<h3 id="linking">Linking</h3>
+<p>The URL you get from this can be linked in anyway you want, with text or image link.</p>
+
+<p>If you want an image as a link you can use one of the available images.</p>
+<h4 id="icon-16x16">Icon 16x16</h4>
+<p><img src="https://flattr.com/_img/icons/flattr_logo_16.png" alt="Flattr icon image"><br>
+<strong>URL</strong>: <code>https://flattr.com/_img/icons/flattr_logo_16.png</code></p>
+<h4 id="badge-93x20">Badge 93x20</h4>
+<p><img src="https://api.flattr.com/button/flattr-badge-large.png" alt="Flattr badge image"><br>
+<strong>URL</strong>: <code>https://api.flattr.com/button/flattr-badge-large.png</code></p>
+<h4 id="example">Example</h4>
+<p>Create a &#39;Flattr API Documentation&#39; thing. If it already exists a &#39;Flattr API Documentation&#39; thing that thing will be displayed. If no thing exists we will <em>autosubmit</em> the thing. When you get your first flattr we will create the thing. This means you won&#39;t be able to see all your autosubmitted things until they get their first flattr.</p>
+<h5 >URL we are using</h5>
+<p>Line breaks are added for better visibility.</p>
+<pre class="highlight"><code>https://flattr.com/submit/auto?user_id=flattr&amp;
+  url=http://developers.flattr.net&amp;
+  title=Flattr%20API%20Documentation&amp;
+  description=Flattr%20API%20Documentation&amp;
+  language=en_GB&amp;
+  tags=flattr,api,programming&amp;
+  category=text
+</code></pre><h5 >Link the badge to a thing</h5>
+<p>Line breaks are added for better visibility.</p>
+<div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;https://flattr.com/submit/auto?</span>
+<span class="s">  user_id=flattr&amp;url=http://developers.flattr.net&amp;</span>
+<span class="s">  title=Flattr%20API%20Documentation&amp;</span>
+<span class="s">  description=Flattr%20API%20Documentation&amp;</span>
+<span class="s">  language=en_GB&amp;tags=flattr,api,programming&amp;category=text&quot;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;https://api.flattr.com/button/flattr-badge-large.png&quot;</span> 
+  <span class="na">alt=</span><span class="s">&quot;Flattr our API Documentation&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/a&gt;</span>
+</pre>
+</div>
+
+<p>Result:</p>
+
+<p><a href="https://flattr.com/submit/auto?user_id=flattr&amp;url=http://developers.flattr.net&amp;title=Flattr%20API%20Documentation&amp;description=Flattr%20API%20Documentation&amp;language=en_GB&amp;tags=flattr,api,programming&amp;category=text"><img src="https://api.flattr.com/button/flattr-badge-large.png" alt="Flattr API Documentation"></a></p>
+
+    </div>
+    <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>
+
+  </div>
+
+  <script src="/js/ender.js"></script>
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-13236450-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

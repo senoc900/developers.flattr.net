@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>Embedded buttons - Flattr Developers</title>
+
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/custom.css">
+  <link rel="stylesheet" href="/styles/syntax.css">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/">Flattr Developer Platform</a></h1>
+
+    <ul class="nav">
+      <li>
+        <a href="/api">REST API</a>
+        <ul>
+          <li>
+            <span>Resources</span>
+            <ul>
+              <li><a href="/api/resources/flattrs">Flattrs</a></li>
+              <li><a href="/api/resources/things">Things</a></li>
+              <li><a href="/api/resources/users">Users</a></li>
+              <li><a href="/api/resources/activities">Activities</a></li>
+              <li><a href="/api/resources/categories">Categories</a></li>
+              <li><a href="/api/resources/languages">Languages</a></li>
+            </ul>
+          </li>
+          <li><a href="/api/changelog">Changelog</a></li>
+          <li><a href="/api/libraries">Libraries</a></li>
+          <li><a href="/api/policy">Policy</a></li>
+        </ul>
+      </li>
+      <li><a href="/button">Embedded buttons</a></li>
+      <li><a href="/auto-submit">Auto-submit URL</a></li>
+      <li><a href="/feed">Flattr in feeds</a></li>
+      <li><a href="/partner">Partner Site Integration</a></li>
+      <li><a href="/api/questions">Questions</a></li>
+
+    </ul>
+
+    <div class="page">
+      <div class="header">
+        <h2>Embedded buttons</h2>
+        <div class="subtitle"></div>
+      </div>
+      <h3 id="introduction">Introduction</h3>
+<blockquote>
+<p>Important: The target audience of this document is mainly site builders, web masters and developers. We assume that you at the very least have moderate knowledge of HTML.</p>
+</blockquote>
+
+<p>The embedded button has two main uses. To load buttons for previously submitted things and to allow automatic submission (autosubmit from now on) of new things. The latter is very useful for web sites that may contain several pages, for example blogs.</p>
+
+<p>There is two ways of defining a button in your code. One using HTML and another using JavaScript. Common for both of them is that the embedded button only has to be loaded once and that it is loaded asynchronously.</p>
+<h3 id="the-loader">The Loader</h3>
+<p>The first step of in using the embedded button is loading it. The url to the javascript is <code>http://api.flattr.com/js/0.6/load.js</code>. The embed script is loaded by placing the following call in the <code>&lt;head&gt;</code> tag of you HTML document:</p>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<span class="cm">/* &lt;![CDATA[ */</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+
+    <span class="nx">s</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span>
+    <span class="nx">s</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="nx">s</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;http://api.flattr.com/js/0.6/load.js?mode=auto&#39;</span><span class="p">;</span>
+
+    <span class="nx">t</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">t</span><span class="p">);</span>
+ <span class="p">})();</span>
+<span class="cm">/* ]]&gt; */</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+</div>
+
+<p>A closer look at the url in the above example reveals that the url has a query string part to it. The embedded button loader supports adding optional parameters to the url which makes Flattr integration easier. In the above example we use the mode parameter to tell the loader to look for button definitions in the HTML source.</p>
+
+<p><strong>Options</strong></p>
+
+<p>For convenience we&#39;ve also added a few query string parameters to set default parameters on all buttons.</p>
+
+<ul>
+<li><strong>mode</strong> - auto | manual(default)</li>
+<li><strong>https</strong> - 1 | 0 (defaults to the schema of load.js)</li>
+<li><strong>uid</strong> - username</li>
+<li><strong>button</strong> - compact | default</li>
+<li><strong>language</strong> - can be set to any of the available languages</li>
+<li><strong>category</strong> - Can be set to any of the available categories</li>
+<li><strong>html5-key-prefix</strong> - a string that must start with &#39;data-&#39;</li>
+</ul>
+
+<p>The parameters <code>uid</code>, <code>button</code>, <code>language</code> and <code>category</code> can be used to set a default that will be used for your buttons unless they override the setting. The most useful of those being <code>uid</code>.</p>
+
+<p><strong>Mode</strong> is used to alter the way buttons are loaded. The default mode is <code>manual</code>, meaning that the user will have to initialize the API themselves through calling <code>setup()</code> (for more information see <a href="#manual-mode">manual mode</a>). If the mode is set to <code>auto</code>, the embedded button script will search for button definitions in HTML as soon as the document is fully loaded (<code>onload</code>), removing the need to call <code>setup()</code>. This <strong>mode</strong> is the one used in the examples below, therefor we won&#39;t explain it further here.</p>
+
+<p>As you&#39;ve probably already figured out, the button can be loaded using HTTPS.
+By default all buttons will be loaded with the same schema ( http or https ) as <code>load.js</code>.
+In other words if you want to use HTTPS buttons then load <code>load.js</code> using HTTPS. If this doesn&#39;t work or you want to load the embedded button script using HTTP for whatever reason, you can set the query string parameter <code>https</code> to <code>1</code>.</p>
+
+<p>In version 0.6 support for html5 custom data attributes was added. By default the embedded button script will look for data attributes starting with <code>data-flattr</code>. The parameter <code>html5-key-prefix</code> allows you to specify a custom prefix to use instead. Example: <code>&amp;html5-key-prefix=data-fvar</code></p>
+
+<p>Note that the query string parameters are added to the <code>load.js</code> url and not to your individual buttons.</p>
+<h5 >Example</h5><div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<span class="cm">/* &lt;![CDATA[ */</span>
+    <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+
+        <span class="nx">s</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span>
+        <span class="nx">s</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="nx">s</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;http://api.flattr.com/js/0.6/load.js?&#39;</span><span class="o">+</span>
+                <span class="s1">&#39;mode=auto&amp;uid=gargamel&amp;language=sv_SE&amp;category=text&#39;</span><span class="p">;</span>
+
+        <span class="nx">t</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">t</span><span class="p">);</span>
+    <span class="p">})();</span>
+<span class="cm">/* ]]&gt; */</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+</div>
+
+<p>Loading the script asynchronously is great but without adding buttons it&#39;s no fun, so lets move on...</p>
+<h3 id="adding-buttons">Adding buttons</h3>
+<p>A button is basically made up of a set of configuration instructions that tells the embedded button script how it should be display. There are a few different ways of defining the buttons, but the parameters required are common to them all.</p>
+
+<p>The parameters are a set of key value pairs. Some of them are required, others are optional. The parameters are listed here in order of importance: </p>
+
+<ul>
+<li><p><strong>url</strong> ( Always required ) -  Each thing on Flattr requires a unique URL. All parts of the URL, including the both the parameters and fragments, are used to distinguish the difference between submitted URLs.</p></li>
+<li><p><strong>uid</strong> ( Required when autosubmit, otherwise optional ) - A Flattr username. This is a required parameter for autosubmit but not for things that are already on flattr.com.</p></li>
+<li><p><strong>title</strong> ( Required when autosubmit, otherwise optional ) - Will be used to describe your thing on Fattr. The <code>title</code> should be between 5-100 characters. All HTML is stripped.</p></li>
+<li><p><strong>description</strong> ( Required when autosubmit, otherwise optional ) - Will be used to describe your thing. The <code>description</code> should be between 5-1000 characters. All HTML is stripped except the <code>&lt;br\&gt;</code> character which will be converted into newlines (<code>\n</code>).</p></li>
+<li><p><strong>category</strong> ( Required when autosubmit, otherwise optional ) - This parameter is used to sort things on Flattr and has no impact on the functionality of your button. It&#39;s value must be one of the <a href="https://api.flattr.com/rest/v2/categories.txt">available categories</a>.</p></li>
+<li><p><strong>language</strong> ( Optional ) - Specifies which language your thing is in. Specifying the language will allow visitors on Flattr to filter through the large amount of things and get a personalized feed of items in their selected languages. The value must be a language code from the <a href="https://api.flattr.com/rest/v2/languages.txt">available languages</a>. Note that even tho this parameter is optional, a language will be guessed and added automatically if it is omitted.</p></li>
+<li><p><strong>tags</strong> ( Optional) - This parameter allows you to add tags that can be used to describe your thing. This is used on Flattr to allow further filtering and sorting of things. Multiple tags are seperated by a comma <code>,</code>. Using non alpha characters in tags are not supported nor is using a comma for obvious reasons.</p></li>
+<li><p><strong>button</strong> ( Optional ) - We also provide a compact version of our Flattr button. This parameter tells the embedded button script which button layout to use. Set this parameter to <code>compact</code> if you want the compact button. Don&#39;t set the parameter at all if you are fine with the normal button.</p></li>
+<li><p><strong>hidden</strong> ( Optional ) - Not all content is suitable for public listing. If you for one reason or another don&#39;t want your content to be listed on Flattr set this parameter to <code>1</code>.</p></li>
+</ul>
+<h3 id="defining-the-button-with-html">Defining the button with HTML</h3>
+<p>The easiest way of using the embedded button script is by defining buttons through HTML. The HTML definition is easy to add and requires no knowledge of JavaScript since it&#39;s syntax is made up of basic HTML code.</p>
+
+<p>Adding, or as we say defining, a button is done like this.</p>
+<div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;FlattrButton&quot;</span> <span class="na">href=</span><span class="s">&quot;[URL]&quot;</span> <span class="na">title=</span><span class="s">&quot;[title]&quot;</span> <span class="na">lang=</span><span class="s">&quot;[language]&quot;</span><span class="nt">&gt;</span>
+  [description]
+<span class="nt">&lt;/a&gt;</span>
+</pre>
+</div>
+
+<p>Where the text within <code>[ ]</code> (square brackets) should be replaced by their actual values.</p>
+
+<p>Note that the attributes on the anchor tag in the above example are basic HTML attributes. There are additional parameters that we need to define our buttons, but we can&#39;t just add them to the anchor tag because then the code would no longer be valid HTML. We solve this by placing our parameters inside the <code>rel</code> attribute.</p>
+
+<p>The <code>rel</code> attribute value must begin with &quot;flattr;&quot;, this is the flattr identifier telling our loader to look for parameters inside the attribute value. Parameters in the <code>rel</code> attribute are defined through key value pairs, using CSS syntax. Example: <code>language:en_GB;</code></p>
+<h5 >Example</h5><div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;FlattrButton&quot;</span> <span class="na">style=</span><span class="s">&quot;display:none;&quot;</span>
+    <span class="na">title=</span><span class="s">&quot;This is my title&quot;</span>
+    <span class="na">rel=</span><span class="s">&quot;flattr;uid:mario;category:text;tags:tag,tag2,tag3;&quot;</span>
+    <span class="na">href=</span><span class="s">&quot;http://wp.local/?p=444&quot;</span><span class="nt">&gt;</span>
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Lorem ipsum dolor sit amet, consectetur adipiscing
+    Maecenas aliquet aliquam leo quis fringilla.
+<span class="nt">&lt;/a&gt;</span>
+</pre>
+</div>
+<h4 id="html5">HTML5</h4>
+<p>In HTML5 using the <code>rel</code> attribute is no longer possible. Instead we&#39;ll take advantage of a new feature in HTML5, custom data attributes. Unlike when using <code>rel</code> each parameter will be defined as a separate attribute where the attribute name is the parameter name prefixed with <code>data-flattr</code>. The attribute prefix can be changed using the query string parameter <code>html5-key-prefix</code>.</p>
+<div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;FlattrButton&quot;</span> <span class="na">style=</span><span class="s">&quot;display:none;&quot;</span>
+    <span class="na">title=</span><span class="s">&quot;This is my title&quot;</span>
+    <span class="na">data-flattr-uid=</span><span class="s">&quot;flattr&quot;</span>
+    <span class="na">data-flattr-tags=</span><span class="s">&quot;text, opensource&quot;</span>
+    <span class="na">data-flattr-category=</span><span class="s">&quot;text&quot;</span>
+    <span class="na">href=</span><span class="s">&quot;http://wp.local/?p=444&quot;</span><span class="nt">&gt;</span>
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Lorem ipsum dolor sit amet, consectetur adipiscing
+    Maecenas aliquet aliquam leo quis fringilla.
+<span class="nt">&lt;/a&gt;</span>
+</pre>
+</div>
+
+<p>To avoid that the embedded button definition is shown while the page is loading we can either set the css class <code>FlattrButton</code> to be hidden in a stylesheet or add <code>style=&quot;display:none;&quot;</code> to the a tag. In the example above we did the latter.</p>
+
+<p>Note that you can add multiple buttons on your page. It&#39;s just a matter of adding another definition.</p>
+<h4 id="manual-mode">Manual mode</h4>
+<p>Manual mode is required when using JavaScript to define the buttons. But manual mode might also be useful in other cases. If you want to trigger the embedded button rendering manually all you need to do is call <code>FlattrLoader.setup()</code>.</p>
+<h5 >Example</h5><div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<span class="cm">/* &lt;![CDATA[ */</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+
+      <span class="nx">doSomeCoolStuffBeforeWeLoadTheFlattrButtons</span><span class="p">();</span>
+
+        <span class="nx">FlattrLoader</span><span class="p">.</span><span class="nx">setup</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="cm">/* ]]&gt; */</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+</div>
+<h4 id="defining-the-button-with-javascript">Defining the button with JavaScript</h4>
+<p>Some people have more complex needs. We try to cater to developers using this alternative way of defining a Flattr button. Do not use this unless you are tech savvy and or comfortable with JavaScript.</p>
+
+<p>Note that this will only work when the embedded button script is loaded in manual mode.</p>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<span class="cm">/* &lt;![CDATA[ */</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">FlattrLoader</span><span class="p">.</span><span class="nx">render</span><span class="p">([</span><span class="nx">button</span> <span class="nx">parameters</span><span class="p">],</span> <span class="p">[</span><span class="nx">target</span><span class="p">],</span> <span class="p">[</span><span class="nx">insert</span> <span class="nx">method</span><span class="p">]);</span>
+  <span class="p">};</span>
+<span class="cm">/* ]]&gt; */</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+</div>
+
+<p>The <code>[button parameters]</code> are defined as a javascript object where the object property is the key. See the parameter list in the section Adding buttons above for valid keys.
+In addition to the before mentioned parameters you can also use these:</p>
+
+<ul>
+<li><strong>url</strong> - URL to thing starting with <code>http://</code> or <code>https://</code></li>
+<li><strong>title</strong> - Title of thing</li>
+<li><strong>description</strong> - Description for thing max 1000 characters, HTML will be stripped</li>
+</ul>
+
+<p>Note that values should be escaped so that they don&#39;t break JS syntax.</p>
+
+<p>Note that while <code>url</code>, <code>title</code> and <code>description</code> can also be used in the <code>rel</code> attribute (see <a href="#defining-the-button-with-html">html definition</a> ), their intended and recommended use is for the javascript implementations.</p>
+
+<p><code>[target]</code> is either a DOM element or an ID of an tag. <code>[insert method]</code> is one of <code>append</code>, <code>before</code> or <code>replace</code>.</p>
+<h5 >Example implementation</h5><div class="highlight"><pre><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<span class="cm">/* &lt;![CDATA[ */</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">FlattrLoader</span><span class="p">.</span><span class="nx">render</span><span class="p">({</span>
+            <span class="s1">&#39;uid&#39;</span><span class="o">:</span> <span class="s1">&#39;flattr&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="o">:</span> <span class="s1">&#39;http://wp.local&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="s1">&#39;Title of the thing&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;description&#39;</span><span class="o">:</span> <span class="s1">&#39;Description of the thing&#39;</span>
+        <span class="p">},</span> <span class="s1">&#39;element_id&#39;</span><span class="p">,</span> <span class="s1">&#39;replace&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="cm">/* ]]&gt; */</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;element_id&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre>
+</div>
+<h3 id="multiple-onload-events">Multiple onload events</h3>
+<p>If you have an advanced website chances are that you are already using a JavaScript that is triggered by the documents <code>onload</code> event.
+In the examples above the examples adding the scripts to the <code>onload</code> event using
+<code>window.onload</code>. The downside to this is that is can only keep one function at a time, so if I add two different functions to <code>onload</code> the latter overwrites the first.</p>
+
+<p>If you are using <a href="http://jquery.com">jQuery</a>, <a href="http://prototypejs.org/">prototype</a> or another javascript lib then you can use their event handlers to get around this. If not then <code>load.js</code> comes with it&#39;s own method. It is not as advanced as that of a full fledged javascript lib but it should get the job done for those of you with simpler needs.</p>
+
+<p>The method is called <code>FlattrLoader.addLoadEvent()</code> and it takes one parameter, a function to be run <code>onload</code>.</p>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+<span class="cm">/* &lt;![CDATA[ */</span>
+    <span class="nx">FlattrLoader</span><span class="p">.</span><span class="nx">addLoadEvent</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Hello world!&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="cm">/* ]]&gt; */</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre>
+</div>
+<h3 id="browser-support">Browser support</h3>
+<p>The buttons should support all modern browsers like the latest version of Firefox, Safari and Chrome and also Internet Explorer 8 and newer. It will degrade nicely in older browsers like Internet Explorer 7 – it will just not show.</p>
+
+    </div>
+    <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>
+
+  </div>
+
+  <script src="/js/ender.js"></script>
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-13236450-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

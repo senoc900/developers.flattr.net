@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>REST API v2 - Flattr Developers</title>
+
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/custom.css">
+  <link rel="stylesheet" href="/styles/syntax.css">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/">Flattr Developer Platform</a></h1>
+
+    <ul class="nav">
+      <li>
+        <a href="/api">REST API</a>
+        <ul>
+          <li>
+            <span>Resources</span>
+            <ul>
+              <li><a href="/api/resources/flattrs">Flattrs</a></li>
+              <li><a href="/api/resources/things">Things</a></li>
+              <li><a href="/api/resources/users">Users</a></li>
+              <li><a href="/api/resources/activities">Activities</a></li>
+              <li><a href="/api/resources/categories">Categories</a></li>
+              <li><a href="/api/resources/languages">Languages</a></li>
+            </ul>
+          </li>
+          <li><a href="/api/changelog">Changelog</a></li>
+          <li><a href="/api/libraries">Libraries</a></li>
+          <li><a href="/api/policy">Policy</a></li>
+        </ul>
+      </li>
+      <li><a href="/button">Embedded buttons</a></li>
+      <li><a href="/auto-submit">Auto-submit URL</a></li>
+      <li><a href="/feed">Flattr in feeds</a></li>
+      <li><a href="/partner">Partner Site Integration</a></li>
+      <li><a href="/api/questions">Questions</a></li>
+
+    </ul>
+
+    <div class="page">
+      <div class="header">
+        <h2>REST API v2</h2>
+        <div class="subtitle">Documentation for the second iteration of our REST API</div>
+      </div>
+      <p>This API is newly released and is still in beta. We want your feedback on it to make sure we got everything right and may do some breaking changes where we realize we have made bad design decisions.</p>
+<h2 id="basics">Basics</h2>
+<ul>
+<li><strong>API-endpoint</strong>: <a href="https://api.flattr.com/rest/v2">https://api.flattr.com/rest/v2</a></li>
+<li><strong>OAuth 2 authorization</strong>: <a href="https://flattr.com/oauth/authorize">https://flattr.com/oauth/authorize</a></li>
+<li><strong>OAuth 2 token</strong>: <a href="https://flattr.com/oauth/token">https://flattr.com/oauth/token</a></li>
+</ul>
+
+<p>All resource paths are relative to the API-endpoint.</p>
+<h3 id="rate-limiting">Rate limiting</h3>
+<p>Two headers regarding limit is sent in every response.</p>
+<pre class="highlight"><code>X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999
+</code></pre>
+<p>X-RateLimit-Limit: is the current max requests.
+X-RateLimit-Remaining is how many requests you have left until you are blocked temporary. When that happens, a <em>rate<em>limit</em>exceeded</em> error will be returned. Your remaining requests are reseted automatically every hour certain intervall.</p>
+<h2 id="authorization">Authorization</h2>
+<p>To gain access to private data clients need to use <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-21">OAuth 2</a>. OAuth 2 is a standardized protocol for how to allow end users to authorize clients to gain access to their private data in the form of access tokens. OAuth 2 rely on separate standards for the access tokens - we currently use <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-08">Bearer tokens</a> which are the simplest and most widespread token type.</p>
+
+<p>To use OAuth 2 you need to <a href="http://flattr.com/apps">register their application</a> and use the assigned Client ID and Client Secret. Client Secrets should be kept secret and not be revealed to anyone else than the application owner.</p>
+<h3 id="authenticate">Authenticate</h3>
+<p>To get a token you need to use the <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-21#section-4.1">authorization code flow</a>.</p>
+
+<ul>
+<li><strong>response_type</strong> ( <em>Required</em> ) - This can be set to <code>code</code> or <code>access_token</code></li>
+<li><strong>client_id</strong> ( <em>Required</em> ) - The client_id found at <a href="http://flattr.com/apps">http://flattr.com/apps</a></li>
+<li><strong>redirect_uri</strong> ( <em>Optional</em> ) -  The callback URL supplied when creating
+the application. It needs to be identical or else the authentication
+will fail.</li>
+<li><strong>scope</strong> ( <em>Optional</em> ) - <a href="#scopes">Available scopes</a> Separate
+scopes with spaces.</li>
+</ul>
+
+<p>(Extra line breaks are for display purposes only)</p>
+<pre class="highlight"><code>GET https://flattr.com/oauth/authorize?response_type=code&amp;
+client_id=1234&amp;
+redirect_uri=http://localhost
+</code></pre>
+<p>If the end user authorize your application the user will be redirect to
+your specified redirect_uri which must be in the <em>callback_domain</em> you
+specified when you registered your app at <a href="https://flattr.com/apps">https://flattr.com/apps</a> along
+side with a parameter named <code>code</code> whom you can exchange for an
+access token.</p>
+<h3 id="request-an-access-token">Request an access token</h3>
+<p>To get hold of a access token you need to exchange your code for a
+working token.</p>
+
+<p>POST the <code>code</code> to the token endpoint and authorize using BASIC Auth
+created from your <code>client_id</code> and <code>client_secret</code>
+(<a href="http://tools.ietf.org/html/rfc2617"> more information in RFC2617</a>)</p>
+
+<ul>
+<li><strong>code</strong> ( <em>Required</em> ) - The <code>code</code> you received from authorization endpoint </li>
+<li><strong>grant_type</strong> ( <em>Required</em> ) - Set to <code>authorization\_code</code></li>
+<li><strong>redirect_uri</strong> ( <em>Required</em> ) - Your applications callback URL</li>
+</ul>
+
+<p><strong>Access token request</strong></p>
+<pre class="highlight"><code>POST https://flattr.com/oauth/token
+
+Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+Content-Type: application/json
+</code></pre>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;un8Vzv7pNMXNuAQY3uRgjYfM4V3Feirz&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;grant_type&quot;</span><span class="o">:</span> <span class="s2">&quot;authorization_code&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;redirect_uri&quot;</span><span class="o">:</span> <span class="s2">&quot;http://localhost&quot;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<pre class="highlight"><code>Content-Type: application/json; charset=utf-8
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store
+Pragma: no-cache
+</code></pre>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;access_token&quot;</span><span class="o">:</span> <span class="s2">&quot;8843d7f92416211de9ebb963ff4ce28125932878&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;token_type&quot;</span><span class="o">:</span> <span class="s2">&quot;bearer&quot;</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+<p>Hurray! you now have an <code>access_token</code> whom you can use to access the
+resources.</p>
+<h3 id="including-token-in-request">Including token in request</h3>
+<p>Include the <code>access_token</code> in the header when accessing the resources to
+authorize. More information is available in <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-08">oauth bearer token
+draft</a>.</p>
+<pre class="highlight"><code>Authorization: Bearer 8843d7f92416211de9ebb963ff4ce28125932878
+</code></pre><h2 id="scopes">Scopes</h2><h5 >Available scopes</h5>
+<ul>
+<li><strong>flattr</strong> - Flattr things</li>
+<li><strong>thing</strong> - Create, update and delete things</li>
+<li><strong>extendedread</strong> - Read private user attributes and find hidden things</li>
+</ul>
+
+<p>You can request several scopes when authorizing a user by separating
+them with spaces <code></code>.</p>
+<h5 >Example</h5><pre class="highlight"><code>GET https://flattr.com/oauth/authorize?response_type=code&amp;
+client_id=1234&amp;
+redirect_uri=http://localhost&amp;
+scope=flattr%20thing
+</code></pre><h2 id="client-errors">Client errors</h2>
+<p>When a client side error occur you will get appropriete HTTP status
+code and a body with information about the error.</p>
+
+<ul>
+<li><code>400 Bad Request</code></li>
+<li><code>401 Unauthorized</code></li>
+<li><code>403 Forbidden</code></li>
+<li><code>404 Not Found</code></li>
+<li><code>406 Not Acceptable</code></li>
+</ul>
+<h5 >Example request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/nothing_here
+</code></pre><h5 >Response</h5>
+<pre class="headers"><code>Status: 404 Not Found
+Content-type: application/json;charset=utf-8
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999</code></pre>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="s2">&quot;not_found&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;error_description&quot;</span><span class="o">:</span> <span class="s2">&quot;The resource was not found&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;error_uri&quot;</span><span class="o">:</span> <span class="s2">&quot;https://developers.flattr.net/api&quot;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<h2 id="response-formats">Response Formats</h2>
+<ul>
+<li><strong>application/json</strong> ( <em>Default</em> )</li>
+<li><strong>text/xml</strong></li>
+<li><strong>application/yaml</strong></li>
+</ul>
+
+<p><a href="http://activitystrea.ms/">Activity Streams</a> feeds are available for some resource, like <strong>flattr</strong>, <strong>things</strong> and <strong>activities</strong>.</p>
+
+<ul>
+<li><strong>application/stream+json</strong> - defined in this <a href="http://activitystrea.ms/specs/json/1.0/">specification</a></li>
+<li><strong>application/atom+xml</strong> - defined in this <a href="http://activitystrea.ms/specs/atom/1.0/">specification</a></li>
+</ul>
+
+<p>Default response format is <strong>application/json</strong>.</p>
+
+<p>You can specify another response format through the <strong>Accept</strong> header as
+specified in
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">rfc2616</a> OR by
+adding a suffix for the file format to the URL (ex. <strong>categories.xml</strong>).</p>
+
+<p>When using POST, PATCH or PUT <strong>application/json</strong> and
+<strong>application/x-www-form-urlencoded</strong> are valid formats.</p>
+
+    </div>
+    <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>
+
+  </div>
+
+  <script src="/js/ender.js"></script>
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-13236450-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

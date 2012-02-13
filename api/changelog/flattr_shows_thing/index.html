@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>Flattr resource now returns a thing - Flattr Developers</title>
+
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/custom.css">
+  <link rel="stylesheet" href="/styles/syntax.css">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/">Flattr Developer Platform</a></h1>
+
+    <ul class="nav">
+      <li>
+        <a href="/api">REST API</a>
+        <ul>
+          <li>
+            <span>Resources</span>
+            <ul>
+              <li><a href="/api/resources/flattrs">Flattrs</a></li>
+              <li><a href="/api/resources/things">Things</a></li>
+              <li><a href="/api/resources/users">Users</a></li>
+              <li><a href="/api/resources/activities">Activities</a></li>
+              <li><a href="/api/resources/categories">Categories</a></li>
+              <li><a href="/api/resources/languages">Languages</a></li>
+            </ul>
+          </li>
+          <li><a href="/api/changelog">Changelog</a></li>
+          <li><a href="/api/libraries">Libraries</a></li>
+          <li><a href="/api/policy">Policy</a></li>
+        </ul>
+      </li>
+      <li><a href="/button">Embedded buttons</a></li>
+      <li><a href="/auto-submit">Auto-submit URL</a></li>
+      <li><a href="/feed">Flattr in feeds</a></li>
+      <li><a href="/partner">Partner Site Integration</a></li>
+      <li><a href="/api/questions">Questions</a></li>
+
+    </ul>
+
+    <div class="page">
+      <div class="header">
+        <h2>Flattr resource now returns a thing</h2>
+        <div class="subtitle"></div>
+      </div>
+      <p>When you flattr a thing from the API you now get a small thing object if
+the flattr was successful. It also returns a <code>location</code> but that
+attribute is now deprecated in favour of the <code>thing</code> attribute.
+<code>location</code> will be removed in due time.</p>
+<h5 >Example request</h5><pre class="highlight"><code>POST https://api.flattr.com/rest/v2/things/423405/flattr
+</code></pre><h5 >Example response</h5>
+<pre class="headers"><code>Status: 200 OK
+Content-type: application/json;charset=utf-8
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999</code></pre>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Thing was successfully flattred&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;thing&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.dev/rest/v2/things/423405&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.dev/thing/423405&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">423405</span><span class="p">,</span>
+    <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;http://blog.flattr.net/2011/10/api-v2-beta-out-whats-changed/&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;API v2 beta out - what&#39;s changed?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;image&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/thing/image/4/2/3/4/0/5/medium.png&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+    </div>
+    <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>
+
+  </div>
+
+  <script src="/js/ender.js"></script>
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-13236450-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

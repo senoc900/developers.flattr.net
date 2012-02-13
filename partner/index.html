@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>Partner Site Integration - Flattr Developers</title>
+
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/custom.css">
+  <link rel="stylesheet" href="/styles/syntax.css">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/">Flattr Developer Platform</a></h1>
+
+    <ul class="nav">
+      <li>
+        <a href="/api">REST API</a>
+        <ul>
+          <li>
+            <span>Resources</span>
+            <ul>
+              <li><a href="/api/resources/flattrs">Flattrs</a></li>
+              <li><a href="/api/resources/things">Things</a></li>
+              <li><a href="/api/resources/users">Users</a></li>
+              <li><a href="/api/resources/activities">Activities</a></li>
+              <li><a href="/api/resources/categories">Categories</a></li>
+              <li><a href="/api/resources/languages">Languages</a></li>
+            </ul>
+          </li>
+          <li><a href="/api/changelog">Changelog</a></li>
+          <li><a href="/api/libraries">Libraries</a></li>
+          <li><a href="/api/policy">Policy</a></li>
+        </ul>
+      </li>
+      <li><a href="/button">Embedded buttons</a></li>
+      <li><a href="/auto-submit">Auto-submit URL</a></li>
+      <li><a href="/feed">Flattr in feeds</a></li>
+      <li><a href="/partner">Partner Site Integration</a></li>
+      <li><a href="/api/questions">Questions</a></li>
+
+    </ul>
+
+    <div class="page">
+      <div class="header">
+        <h2>Partner Site Integration</h2>
+        <div class="subtitle"></div>
+      </div>
+      <p>If you are Flattr partner and you have received a partner key you can use this documentation..</p>
+
+<p>To apply for partnership please get in <a href="https://flattr.com/support/contact">contact</a> with us.</p>
+<h3 id="community-partner-buttons">Community partner buttons</h3><h4 id="introduction">Introduction</h4>
+<p>The community partner buttons mechanism is a way for communities to add Flattr buttons to all their users&#39; content without the user having to preregister at Flattr to get them.</p>
+
+<p>The mechanism uses non-flattr user identifiers to identify ownership of the things and lets the user claim its things and flattrs by later confirming that its the rightful owner of that identifier.</p>
+
+<p>Callbacks are supported for notifying partner sites when something happens to one of their unclaimed things - such as them receiving flattrs. That way partners can communicate what is happening to their users so that their users are aware that they have money to claim.</p>
+<h4 id="steps">Steps</h4>
+<ol>
+<li>Auto-submit / Embedded buttons</li>
+<li>Web Hook callbacks</li>
+</ol>
+<h4 id="auto-submit-/-embedded-buttons">Auto-submit / Embedded buttons</h4>
+<p>The first step is to add a way for users to be able to flattr the content on the site. There&#39;s two ways to do this.</p>
+
+<p>The best user experience is achieved by using our javascript based embedded buttons which embeds buttons as iframes through which logged in users can flattr right away.</p>
+
+<p>If for any reason embedded buttons won&#39;t work one can instead use our static auto-submit to open a page on Flattr.com for the thing on which it can be flattred.</p>
+
+<p>Through the auto-submit process (auto-submitting means that a Flattr thing is created automatically when the first flattr is made - they don&#39;t have to be presubmitted) the description of the thing is currently also added - the name, category, language etc.</p>
+
+<p><strong>However</strong> - we&#39;re looking at moving away from auto-submit provided description data in the <em>future</em> and fetch the description of the thing from its URL instead - using <a href="http://ogp.me/">Open Graph</a> data or similar. Would be nice if partners kept this in mind when choosing URL:s for their things. Feedback is also welcome.</p>
+<h4 id="embedded-buttons">Embedded buttons</h4>
+<p><a href="/button">Embedded buttons</a> for community partners work the same way as a normal <a href="/auto-submit">auto-submitting</a> Flattr button.</p>
+
+<p>The difference between normal buttons and the ones used by community partners is that community partners assigns an <code>owner</code> parameter instead of the <code>uid</code> parameter used by ordinary buttons. The owner parameter contains an identifier for a non-flattr user. See a list of supported identifiers in the section <em>&quot;Supported user identifiers&quot;</em> at the end of this document.</p>
+<h4 id="static-auto-submit">Static auto-submit</h4>
+<p>The static auto-submit is a link that redirects to either an existing thing or to a temporary page where the thing can be flattred and thus also created through the auto-submit.</p>
+
+<p>The basic URL for the static auto-submit is <code>https://flattr.com/submit/auto</code> and to that a bunch of query parameters are added of which two are critical for community partners: The <code>url</code> and <code>owner</code> parameters. The auto-submit parameters for the thing description like <code>title</code> and <code>decription</code> are the same as for the button. See <a href="/button">embedded button documentation</a> for a full list.</p>
+<h4 id="example:-auto-submit-a-url">Example: Auto-submit a URL</h4>
+<p><code>https://flattr.com/submit/auto?url=http://example.com/&amp;owner=twitter:user:id:123&amp;title=Example</code></p>
+<h3 id="web-hook-callbacks">Web Hook callbacks</h3>
+<p>For partners to get notified when something happens to their site&#39;s unclaimed things we have added support for web hooks - this means that partners can pass the notification on to the owner of thing so that partners can be sure that the user knows about it.</p>
+
+<p>A single web hook URL is registered with us and which events that should be sent to it. Whenever an event occurs we then do a POST-request to that URL with a form encoded body containing event specific parameters as well as a <code>_event</code> parameter indicating the type of event. Partner sites should always check the <code>_event</code> parameter prior to processing an event to be sure that they are processing the right event.</p>
+<h3 id="supported-events">Supported events</h3><h4 id="unclaimed-thing-receives-a-pending-flattr">Unclaimed thing receives a pending flattr</h4>
+<p><strong>Event name:</strong> <code>pendingclickcreate</code></p>
+
+<p><strong>Parameters:</strong></p>
+
+<ul>
+<li><strong>thing_id</strong> - The numeric id of the thing that was clicked</li>
+<li><strong>thing_owner_id</strong> - The full user identifier specified for the thing - will likely be the one specified by the partner in in Step 1.</li>
+<li><strong>thing_clicks_total</strong> - The total amount of clicks after this click happened. (While hooks are likely to be executed in order - don&#39;t count on it)</li>
+<li><strong>flattrer_username</strong> - The username of the user that did the flattr - or empty if the user flattrs anonymously</li>
+<li><strong>claim_url</strong> - URL to a page on Flattr.com where the user can claim their things. If the owner was specified as an e-mail address then append the unhashed e-mail address to the claim url like &quot;/owner/foo%40example.com&quot;.</li>
+</ul>
+<h3 id="partner-requirements">Partner requirements</h3>
+<p>Community partner functionality is, due to its implementation, currently limited to selected partners. Partner registration is required for non-flattr user identifiers as well as callbacks to work. Please contact the Flattr team to get registered as a partner.</p>
+<h3 id="supported-user-identifiers">Supported user identifiers</h3>
+<ul>
+<li>E-mail addresses, MD5 hashed. Eg: <code>email:05f8b3480b04f6a516bb1a46e556323c</code></li>
+<li>Twitter user ids. Eg. <code>twitter:user:id:123</code></li>
+<li><em>(upcoming)</em> Facebook user ids. Eg. <code>facebook:user:id:123</code></li>
+<li><em>(upcoming)</em> SoundCloud user ids. Eg. <code>soundcloud:user:id:123</code></li>
+</ul>
+
+    </div>
+    <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>
+
+  </div>
+
+  <script src="/js/ender.js"></script>
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-13236450-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
