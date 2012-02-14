@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 
-  <title>Add sorting to things search - Flattr Developers</title>
+  <title>Error list - Flattr Developers</title>
 
   <link rel="stylesheet" href="/styles/base.css">
   <link rel="stylesheet" href="/styles/custom.css">
@@ -45,11 +45,31 @@
 
     <div class="page">
       <div class="header">
-        <h2>Add sorting to things search</h2>
+        <h2>Error list</h2>
         <div class="subtitle"></div>
       </div>
-      <p>You can now sort things when searching in the API by <code>trend</code>, <code>flattrs</code>
-or <code>relevance</code>. Relevance is the default sort behaviour.</p>
+      <p>Possible erros from the API</p>
+<h6 >Errors</h6>
+<ul>
+<li><p><code>not_found</code> (404) - Resource was not found</p></li>
+<li><p><code>not_found</code> (404) - The requested thing(s) could not be found</p></li>
+<li><p><code>not_found</code> (404) - The requested flattr(s) could not be found</p></li>
+<li><p><code>not_found</code> (404) - The requested user could not be found</p></li>
+<li><p><code>not_found</code> (404) - The requested activities could not be found</p></li>
+<li><p><code>invalid_request</code> (400) - The request is invalid</p></li>
+<li><p><code>unauthorized</code> (401) - You are unauthorized to access the resource</p></li>
+<li><p><code>rate_limit_exceeded</code> (403) - Rate limit exceeded</p></li>
+<li><p><code>invalid_request</code> (401) - Requires ssl</p></li>
+<li><p><code>invalid_scope</code> (403) - The scope(s) are invalid</p></li>
+<li><p><code>insufficient_scope</code> (403) - You are don&#39;t have sufficient access right to access this resource</p></li>
+<li><p><code>flattr_once</code> (403) - You are not allowed to flattr this thing more than once this period</p></li>
+<li><p><code>flattr_owner</code> (403) - You are not allowed to flattr your own thing</p></li>
+<li><p><code>no_means</code> (401) - You don&#39;t have any money to flattr with</p></li>
+<li><p><code>server_error</code> (500) - Something went wrong, we have been notified</p></li>
+<li><p><code>invalid_parameters</code> (400) - One or many parameters are missing or invalid</p></li>
+<li><p><code>not_acceptable</code> (406) - Unknown response format</p></li>
+<li><p><code>forbidden</code> (403) - You are not allowed to delete the thing</p></li>
+</ul>
 
     </div>
     <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>

@@ -29,6 +29,7 @@
               <li><a href="/api/resources/languages">Languages</a></li>
             </ul>
           </li>
+          <li><a href="/api/errors">Error list</a></li>
           <li><a href="/api/changelog">Changelog</a></li>
           <li><a href="/api/libraries">Libraries</a></li>
           <li><a href="/api/policy">Policy</a></li>
@@ -68,6 +69,10 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">}</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>user_not_found</code> (HTTP 404) - user does not exist</li>
+</ul>
 <h4 id="get-the-authenticated-user">Get the authenticated user</h4>
 <p><em><a href="/rest/#authenticated_call">Authentication</a> needed</em></p>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/user
@@ -91,6 +96,10 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">}</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>unauthorized</code> (HTTP 401) - invalid credentials (bearer token) supplied</li>
+</ul>
 <h5 >Response with scope <code>extendedread</code></h5>
 <pre class="headers"><code>Status: 200 OK
 Content-type: application/json;charset=utf-8

@@ -29,6 +29,7 @@
               <li><a href="/api/resources/languages">Languages</a></li>
             </ul>
           </li>
+          <li><a href="/api/errors">Error list</a></li>
           <li><a href="/api/changelog">Changelog</a></li>
           <li><a href="/api/libraries">Libraries</a></li>
           <li><a href="/api/policy">Policy</a></li>
@@ -87,6 +88,10 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">}</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>user_not_found</code> (HTTP 404) - user does not exist</li>
+</ul>
 <h4 id="list-a-authenticated-users-activities">List a authenticated users activities</h4>
 <p><em><a href="#authenticated_call">Authentication</a> needed</em></p>
 <h5 >Parameters</h5>
@@ -122,6 +127,10 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">}</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>unauthorized</code> (HTTP 401) - invalid credentials (bearer token) supplied</li>
+</ul>
 
     </div>
     <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>

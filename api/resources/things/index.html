@@ -29,6 +29,7 @@
               <li><a href="/api/resources/languages">Languages</a></li>
             </ul>
           </li>
+          <li><a href="/api/errors">Error list</a></li>
           <li><a href="/api/changelog">Changelog</a></li>
           <li><a href="/api/libraries">Libraries</a></li>
           <li><a href="/api/policy">Policy</a></li>
@@ -235,7 +236,7 @@ X-RateLimit-Remaining: 4999</code></pre>
 <li><strong>id</strong> ( <em>Optional</em> ) - A list of thing ids you want separated with a
 comma (<code>,</code>).</li>
 </ul>
-<h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things?id=:id,:id
+<h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/:id,:id
 </code></pre><h5 >Example response</h5>
 <pre class="headers"><code>Status: 200 OK
 Content-type: application/json;charset=utf-8
