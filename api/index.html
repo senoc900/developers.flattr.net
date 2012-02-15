@@ -154,11 +154,14 @@ scope=flattr%20thing
 code and a body with information about the error.</p>
 
 <ul>
-<li><code>400 Bad Request</code></li>
-<li><code>401 Unauthorized</code></li>
-<li><code>403 Forbidden</code></li>
-<li><code>404 Not Found</code></li>
-<li><code>406 Not Acceptable</code></li>
+<li><code>invalid_request</code> (400 Bad Request) - Not a valid request</li>
+<li><code>invalid_parameters</code> (400 Bad Request) - Parameter missing or invalid</li>
+<li><code>unauthorized</code> (401 Unauthorized) - Unauthorized to access resource</li>
+<li><code>rate_limit_exceeded</code> (403 Forbidden) - To many request the last hour</li>
+<li><code>invalid_scope</code> (403 Forbidden) - Scope does not exist</li>
+<li><code>insufficient_scope</code> (403 Forbidden) - Don&#39;t have the scope required to access resource</li>
+<li><code>not_found</code> (404 Not Found) - Resource was not found</li>
+<li><code>not_acceptable</code> (406 Not acceptable) - Unknown response format</li>
 </ul>
 <h5 >Example request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/nothing_here
 </code></pre><h5 >Response</h5>
