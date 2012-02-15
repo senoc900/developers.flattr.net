@@ -29,7 +29,6 @@
               <li><a href="/api/resources/languages">Languages</a></li>
             </ul>
           </li>
-          <li><a href="/api/errors">Error list</a></li>
           <li><a href="/api/changelog">Changelog</a></li>
           <li><a href="/api/libraries">Libraries</a></li>
           <li><a href="/api/policy">Policy</a></li>
@@ -50,20 +49,20 @@
       </div>
       <h3 id="introduction">Introduction</h3>
 <p>If you want to include Flattr in your RSS or Atom feeds then this is the recommended way for doing so. Including Flattr in a feed can be useful for podcasts and similar but the same method can also be used in other scenarios.</p>
-
-<p>We recommend adding payment links, using a standard payment relation, that points to <a href="/auto-submit/">auto-submit URL:s</a> for the things you want to be flattrable. You could add these payment links to both the feed itself and its entries.</p>
-<h3 id="example">Example</h3>
-<p>In an Atom feed add something like this to either the feed itself or to an entry:</p>
+<h3 id="shorter-version">Shorter version</h3>
+<p>You include Flattr in your feeds by adding payment links, using the standard <em>payment</em> relation, to your feed entries that you point directly to (<em>without any redirects</em>) <a href="/auto-submit/">auto-submit URL:s</a> for those feed entries.</p>
+<h4 id="example">Example</h4>
+<p>In an Atom feed add something like this to an entry:</p>
 <div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;payment&quot;</span> <span class="na">href=</span><span class="s">&quot;https://flattr.com/submit/auto?url=https%3A%2F%2Fdevelopers.flattr.net%2F&amp;amp;user_id=flattr&quot;</span> <span class="na">type=</span><span class="s">&quot;text/html&quot;</span> <span class="nt">/&gt;</span>
 </pre>
 </div>
 
-<p>In an item in a RSS feed add:</p>
+<p>In an item in a RSS feed add this instead:</p>
 <div class="highlight"><pre><span class="nt">&lt;atom:link</span> <span class="na">rel=</span><span class="s">&quot;payment&quot;</span> <span class="na">href=</span><span class="s">&quot;https://flattr.com/submit/auto?url=https%3A%2F%2Fdevelopers.flattr.net%2F&amp;amp;user_id=flattr&quot;</span> <span class="na">type=</span><span class="s">&quot;text/html&quot;</span> <span class="nt">/&gt;</span>
 </pre>
 </div>
 
-<p>And make sure that the RSS-container itself knows of the atom:link-tag:</p>
+<p>And in a RSS feed also make sure that the RSS-container itself knows of the atom:link-tag by adding the atom-namespace:</p>
 <div class="highlight"><pre><span class="nt">&lt;rss</span> <span class="na">xmlns:atom=</span><span class="s">&quot;http://www.w3.org/2005/Atom&quot;</span><span class="nt">&gt;</span>
 </pre>
 </div>
@@ -82,7 +81,9 @@
 
 <p>With <a href="/auto-submit/">auto-submit URL:s</a> as payment-links all clients already supporting payment-relations will automatically support Flattr links, but clients that wants to do Flattr specific integrations can also do so.</p>
 
-<p>Eg. mobile clients that wants a better UX-flow for Flattr can implement such by checking payment-links for <a href="/auto-submit/">auto-submit URL:s</a> (links starting with &quot;<a href="https://flattr.com/submit/auto%22">https://flattr.com/submit/auto&quot;</a>) and use those URL:s for the API resources <a href="/api/resources/things/#check-if-a-thing-exists">/things/lookup</a> and <a href="/api/resources/flattrs/#flattr-a-autosubmit-url">/flattr</a> to get more info about them or to flattr them.</p>
+<p>Eg. mobile clients that wants a better UX-flow for Flattr can implement such by checking payment-links for URL:s matching the pattern of <a href="/auto-submit/">auto-submit URL:s</a> (links starting with &quot;<a href="https://flattr.com/submit/auto%22">https://flattr.com/submit/auto&quot;</a>) and use those URL:s for the API resources <a href="/api/resources/things/#check-if-a-thing-exists">/things/lookup</a> and <a href="/api/resources/flattrs/#flattr-a-autosubmit-url">/flattr</a> to get more info about them or to flattr them.</p>
+
+<p>We discourage hiding <a href="/auto-submit/">auto-submit URL:s</a> behind redirects – clients should be able to expect that a Flattr payment link is identifiable by just matching it against a pattern.</p>
 
     </div>
     <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>

@@ -29,7 +29,6 @@
               <li><a href="/api/resources/languages">Languages</a></li>
             </ul>
           </li>
-          <li><a href="/api/errors">Error list</a></li>
           <li><a href="/api/changelog">Changelog</a></li>
           <li><a href="/api/libraries">Libraries</a></li>
           <li><a href="/api/policy">Policy</a></li>
@@ -88,7 +87,7 @@ X-RateLimit-Remaining: 4999</code></pre>
 </pre>
 </div>
 <h4 id="list-a-authenticated-users-things">List a authenticated users things</h4>
-<p><em><a href="#authenticated_call">Authentication</a> needed</em></p>
+<p><em><a href="/api/#authorization">Authorization</a> needed</em></p>
 <h5 >Parameters</h5>
 <ul>
 <li><strong>count</strong> ( <em>Optional</em> ) - Number of records to receive ( default: 30)</li>
@@ -349,7 +348,7 @@ X-RateLimit-Remaining: 4999</code></pre>
 </pre>
 </div>
 <h4 id="create-a-thing">Create a thing</h4>
-<p><em><a href="#authenticated_call">Authentication</a> needed</em></p>
+<p><em><a href="/api/#authorization">Authorization</a> needed</em></p>
 
 <p><strong>Scope required</strong>: thing</p>
 
@@ -391,7 +390,7 @@ To work around this problem you should do a POST request instead of an
 PATCH and include the parameter <code>_method</code> with with the value
 <code>patch</code>.</p>
 
-<p><em><a href="#authenticated_call">Authentication</a> needed</em></p>
+<p><em><a href="/api/#authorization">Authorization</a> needed</em></p>
 
 <p><strong>Scope required</strong>: thing</p>
 
@@ -426,7 +425,7 @@ X-RateLimit-Remaining: 4999</code></pre>
 </pre>
 </div>
 <h4 id="delete-a-thing">Delete a thing</h4>
-<p><em><a href="#authenticated_call">Authentication</a> needed</em></p>
+<p><em><a href="/api/#authorization">Authorization</a> needed</em></p>
 
 <p><strong>Scope required</strong>: thing</p>
 <h5 >Request</h5><pre class="highlight"><code>DELETE https://api.flattr.com/rest/v2/things/:id

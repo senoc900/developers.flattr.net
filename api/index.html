@@ -29,7 +29,6 @@
               <li><a href="/api/resources/languages">Languages</a></li>
             </ul>
           </li>
-          <li><a href="/api/errors">Error list</a></li>
           <li><a href="/api/changelog">Changelog</a></li>
           <li><a href="/api/libraries">Libraries</a></li>
           <li><a href="/api/policy">Policy</a></li>
@@ -196,8 +195,10 @@ specified in
 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">rfc2616</a> OR by
 adding a suffix for the file format to the URL (ex. <strong>categories.xml</strong>).</p>
 
+<p>JSONP is supported by specifying a callback using the <strong>jsonp</strong> query parameter. The API also supports <strong>CORS</strong>, cross-origin resource sharing, for all requests – so JSONP <a href="http://caniuse.com/#search=cors">shouldn&#39;t be needed</a> in most modern browsers.</p>
+
 <p>When using POST, PATCH or PUT <strong>application/json</strong> and
-<strong>application/x-www-form-urlencoded</strong> are valid formats.</p>
+<strong>application/x-www-form-urlencoded</strong> are valid formats of the request&#39;s own content.</p>
 
     </div>
     <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>
