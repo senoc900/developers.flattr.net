@@ -162,6 +162,10 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">}</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>not_found</code> (404 Not Found) - the thing can not be found</li>
+</ul>
 <h5 >Example response when resource owner don&#39;t own the thing</h5>
 <pre class="headers"><code>Status: 200 OK
 Content-type: application/json;charset=utf-8
@@ -384,6 +388,25 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">}</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>validation</code> (400 Bad Request) - The information you submitted did not validate</li>
+</ul>
+
+<p>example error when an invalid url is submitted</p>
+
+<pre class="headers"><code>Status: 400 Bad Request
+Content-type: application/json;charset=utf-8
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999</code></pre>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="s2">&quot;validation&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;error_description&quot;</span><span class="o">:</span> <span class="s2">&quot;Invalid url&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;error_uri&quot;</span><span class="o">:</span> <span class="s2">&quot;http://developers.flattr.net/api&quot;</span>
+<span class="p">}</span>
+</pre>
+</div>
 <h4 id="update-a-thing">Update a thing</h4>
 <p><strong>Currently we are having problems with the PATCH request.</strong>
 To work around this problem you should do a POST request instead of an
@@ -438,7 +461,7 @@ X-RateLimit-Remaining: 4999</code></pre>
 <pre class="highlight"><code></code></pre>
 <h4 id="errors">Errors</h4>
 <ul>
-<li><code>forbidden</code> (403 Forbidden) - Cannot delete thing</li>
+<li><code>forbidden</code> (403 Forbidden) - Cannot delete the thing. Maby it&#39;s not you thing or the scope <code>thing</code> is missing.</li>
 </ul>
 <h4 id="search-things">Search things</h4><h5 >Parameters</h5>
 <ul>
