@@ -30,7 +30,7 @@
             </ul>
           </li>
           <li><a href="/api/changelog">Changelog</a></li>
-          <li><a href="/api/libraries">Libraries</a></li>
+          <li><a href="/api/libraries">Clients</a></li>
           <li><a href="/api/policy">Policy</a></li>
         </ul>
       </li>
@@ -51,6 +51,7 @@
 <ul>
 <li><strong>count</strong> ( <em>Optional</em> ) - Number of records to receive ( default: 30 )</li>
 <li><strong>page</strong> ( <em>Optional</em> ) - Page of results to retreive ( first page is 1 )</li>
+<li><strong>full</strong> ( <em>Optional</em> ) - Receive full user object instead of small</li>
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/users/:username/things
 </code></pre><h5 >Example response</h5>
@@ -92,6 +93,7 @@ X-RateLimit-Remaining: 4999</code></pre>
 <ul>
 <li><strong>count</strong> ( <em>Optional</em> ) - Number of records to receive ( default: 30)</li>
 <li><strong>page</strong> ( <em>Optional</em> ) - Page of results to retreive ( first page is 1 )</li>
+<li><strong>full</strong> ( <em>Optional</em> ) - Receive full user object instead of small</li>
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/user/things
 </code></pre><h5 >Example response</h5>
@@ -129,7 +131,11 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">]</span>
 </pre>
 </div>
-<h4 id="get-a-thing">Get a thing</h4><h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/:id
+<h4 id="get-a-thing">Get a thing</h4><h5 >Parameters</h5>
+<ul>
+<li><strong>full</strong> ( <em>Optional</em> ) - Receive full user object instead of small</li>
+</ul>
+<h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/:id
 </code></pre><h5 >Example response without an access token (public)</h5>
 <pre class="headers"><code>Status: 200 OK
 Content-type: application/json;charset=utf-8
@@ -238,6 +244,7 @@ X-RateLimit-Remaining: 4999</code></pre>
 <ul>
 <li><strong>id</strong> ( <em>Optional</em> ) - A list of thing ids you want separated with a
 comma (<code>,</code>).</li>
+<li><strong>full</strong> ( <em>Optional</em> ) - Receive full user object instead of small</li>
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/:id,:id
 </code></pre><h5 >Example response</h5>
@@ -476,6 +483,7 @@ X-RateLimit-Remaining: 4999</code></pre>
 <code>relevance</code> (default)</li>
 <li><strong>page</strong> (<em>Optional</em>) - integer The result page to show</li>
 <li><strong>count</strong> (<em>Optional</em>) - integer Number of items per page</li>
+<li><strong>full</strong> ( <em>Optional</em> ) - Receive full user object instead of small</li>
 </ul>
 <h5 >Tags</h5>
 <p>Tags support a syntax to do advanced tag lookups. It supports <code>|</code> ( OR

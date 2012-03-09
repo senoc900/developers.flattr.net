@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>Receive full resources instead of small - Flattr Developers</title>
+
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/custom.css">
+  <link rel="stylesheet" href="/styles/syntax.css">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/">Flattr Developer Platform</a></h1>
+
+    <ul class="nav">
+      <li>
+        <a href="/api">REST API</a>
+        <ul>
+          <li>
+            <span>Resources</span>
+            <ul>
+              <li><a href="/api/resources/flattrs">Flattrs</a></li>
+              <li><a href="/api/resources/things">Things</a></li>
+              <li><a href="/api/resources/users">Users</a></li>
+              <li><a href="/api/resources/activities">Activities</a></li>
+              <li><a href="/api/resources/categories">Categories</a></li>
+              <li><a href="/api/resources/languages">Languages</a></li>
+            </ul>
+          </li>
+          <li><a href="/api/changelog">Changelog</a></li>
+          <li><a href="/api/libraries">Clients</a></li>
+          <li><a href="/api/policy">Policy</a></li>
+        </ul>
+      </li>
+      <li><a href="/button">Embedded buttons</a></li>
+      <li><a href="/auto-submit">Auto-submit URL</a></li>
+      <li><a href="/feed">Flattr in feeds</a></li>
+      <li><a href="/partner">Partner Site Integration</a></li>
+      <li><a href="/api/questions">Questions</a></li>
+
+    </ul>
+
+    <div class="page">
+      <div class="header">
+        <h2>Receive full resources instead of small</h2>
+        <div class="subtitle"></div>
+      </div>
+      <p>Now you can include a parameter called <code>full</code> in your request to certain resources
+ and all objects inside the resource will always return all information available.</p>
+
+<p>Example fetching a thing</p>
+<h5 >Request without <code>full</code> parameter</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/450287
+</code></pre><h6 >Response</h6>
+<pre class="headers"><code>Status: 200 OK
+Content-type: application/json;charset=utf-8
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999</code></pre>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">450287</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;A ruby gem wrapping Flattrs API.&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;category&quot;</span><span class="o">:</span> <span class="s2">&quot;software&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.dev/rest/v2/things/450287&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;flattrs&quot;</span><span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
+  <span class="s2">&quot;flattrs_user_count&quot;</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="s2">&quot;created_at&quot;</span><span class="o">:</span> <span class="mi">1323614098</span><span class="p">,</span>
+  <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.dev/thing/450287&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">&quot;gem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ruby&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;programming&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;opensource&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flattr&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;api&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;https://github.com/simon/flattr&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;Ruby gem wrapping Flattrs API&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.dev/rest/v2/users/smgt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;smgt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.dev/profile/smgt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;image&quot;</span><span class="o">:</span> <span class="s2">&quot;http://flattr.com/thing/image/4/5/0/2/8/7/medium.png&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;language&quot;</span><span class="o">:</span> <span class="s2">&quot;en_GB&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;hidden&quot;</span><span class="o">:</span> <span class="mi">0</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+<p>The <code>owner</code> is just represented with <code>resource</code>, <code>username</code>, <code>type</code>
+and <code>link</code>.</p>
+<h5 >Request with the <code>full</code> parameter</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/450287?full
+</code></pre><h5 >Response</h5><div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">450287</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;A ruby gem wrapping Flattrs API.&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;category&quot;</span><span class="o">:</span> <span class="s2">&quot;software&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.dev/rest/v2/things/450287&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;flattrs&quot;</span><span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
+  <span class="s2">&quot;flattrs_user_count&quot;</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="s2">&quot;created_at&quot;</span><span class="o">:</span> <span class="mi">1323614098</span><span class="p">,</span>
+  <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.dev/thing/450287&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">&quot;gem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ruby&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;programming&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;opensource&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flattr&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;api&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;https://github.com/simon/flattr&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;Ruby gem wrapping Flattrs API&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;avatar&quot;</span><span class="o">:</span> <span class="s2">&quot;https://secure.gravatar.com/avatar/88bbe05fec72c1eba7c39d780c3bccae?s=48&amp;r=pg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;country&quot;</span><span class="o">:</span> <span class="s2">&quot;Sweden&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.dev/rest/v2/users/smgt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;firstname&quot;</span><span class="o">:</span> <span class="s2">&quot;Simon&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lastname&quot;</span><span class="o">:</span> <span class="s2">&quot;Gate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;smgt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.dev/profile/smgt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;about&quot;</span><span class="o">:</span> <span class="s2">&quot;Human, programmer, climber, cyclist&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="kc">null</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;image&quot;</span><span class="o">:</span> <span class="s2">&quot;http://flattr.com/thing/image/4/5/0/2/8/7/medium.png&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;language&quot;</span><span class="o">:</span> <span class="s2">&quot;en_GB&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;hidden&quot;</span><span class="o">:</span> <span class="mi">0</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+<p>As you can see the full <code>owner</code> object is included in the response.</p>
+
+    </div>
+    <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>
+
+  </div>
+
+  <script src="/js/ender.js"></script>
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-13236450-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

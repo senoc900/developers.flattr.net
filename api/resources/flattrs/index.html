@@ -30,7 +30,7 @@
             </ul>
           </li>
           <li><a href="/api/changelog">Changelog</a></li>
-          <li><a href="/api/libraries">Libraries</a></li>
+          <li><a href="/api/libraries">Clients</a></li>
           <li><a href="/api/policy">Policy</a></li>
         </ul>
       </li>
@@ -51,6 +51,7 @@
 <ul>
 <li><strong>count</strong> ( <em>Optional</em> ) - Number of records to receive ( default: 30 )</li>
 <li><strong>page</strong> ( <em>Optional</em> ) - Page of results to retreive (first page is 1)</li>
+<li><strong>full</strong> ( <em>Optional</em> ) - Receive full thing and user objects instead of small</li>
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/users/:username/flattrs
 </code></pre><h5 >Example response</h5>
@@ -92,6 +93,7 @@ X-RateLimit-Remaining: 4999</code></pre>
 <ul>
 <li><strong>count</strong> ( <em>Optional</em> ) - Number of records to receive</li>
 <li><strong>page</strong> ( <em>Optional</em> ) - Page of results to retreive</li>
+<li><strong>full</strong> ( <em>Optional</em> ) - Receive full thing and user objects instead of small</li>
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/user/flattrs
 </code></pre><h5 >Example response</h5>
@@ -133,6 +135,7 @@ X-RateLimit-Remaining: 4999</code></pre>
 <ul>
 <li><strong>count</strong> ( <em>Optional</em> ) - Number of records to receive ( default: 30 )</li>
 <li><strong>page</strong> ( <em>Optional</em> ) - Page of results to retreive (first page is 1)</li>
+<li><strong>full</strong> ( <em>Optional</em> ) - Receive full thing and user objects instead of small</li>
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/:id/flattrs
 </code></pre><h5 >Example response</h5>
