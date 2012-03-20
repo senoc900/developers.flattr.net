@@ -90,6 +90,12 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">]</span>
 </pre>
 </div>
+
+<p>If the response header is <code>200 OK</code> but the response is empty there is two possible reasons. One is that the user have choosen to hide what he/she flattrs. The other is because that user haven&#39;t flattred anything yet.</p>
+<h5 >Errors</h5>
+<ul>
+<li><code>not_found</code> (404 Not Found) - The requested user could not be found</li>
+</ul>
 <h4 id="list-the-authenticated-users-flattrs">List the authenticated users flattrs</h4><h5 >Parameters</h5>
 <ul>
 <li><strong>count</strong> ( <em>Optional</em> ) - Number of records to receive</li>
@@ -132,6 +138,10 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">]</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>unauthorized</code> (401 Unauthorized) - You are unauthorized to access the resource (no token?)</li>
+</ul>
 <h4 id="list-a-things-flattrs">List a things flattrs</h4><h5 >Parameters</h5>
 <ul>
 <li><strong>count</strong> ( <em>Optional</em> ) - Number of records to receive ( default: 30 )</li>
@@ -174,6 +184,10 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">]</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>unauthorized</code> (401 Unauthorized) - You are unauthorized to access the resource (no token?)</li>
+</ul>
 <h4 id="flattr-a-thing">Flattr a thing</h4>
 <p><strong>Scope required</strong>: flattr</p>
 <h5 >Request</h5><pre class="highlight"><code>POST https://api.flattr.com/rest/v2/things/:id/flattr

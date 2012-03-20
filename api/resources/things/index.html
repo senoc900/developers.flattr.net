@@ -88,6 +88,10 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">}</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>not_found</code> (404 Not Found) - The requested user could not be found</li>
+</ul>
 <h4 id="list-a-authenticated-users-things">List a authenticated users things</h4>
 <p><em><a href="/api/#authorization">Authorization</a> needed</em></p>
 <h5 >Parameters</h5>
@@ -132,6 +136,10 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">]</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>unauthorized</code>  (401 Unauthorized) - You are unauthorized to access the resource (no token?)</li>
+</ul>
 <h4 id="get-a-thing">Get a thing</h4><h5 >Parameters</h5>
 <ul>
 <li><strong>full</strong> ( <em>Optional</em> ) - Receive full user object instead of small</li>
@@ -311,6 +319,10 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">]</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>not_found</code> (404 Not Found) - The requested thing(s) could not be found&quot;</li>
+</ul>
 <h4 id="check-if-a-thing-exists">Check if a thing exists</h4><h5 >Parameters</h5>
 <ul>
 <li><strong>url</strong> (Optional) - The URL you want to lookup</li>
@@ -359,6 +371,10 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">}</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>validation</code> (400 Bad Request) - Owner mismatch. Current thing owned by other account.</li>
+</ul>
 <h4 id="create-a-thing">Create a thing</h4>
 <p><em><a href="/api/#authorization">Authorization</a> needed</em></p>
 
@@ -455,6 +471,10 @@ X-RateLimit-Remaining: 4999</code></pre>
 <span class="p">}</span>
 </pre>
 </div>
+<h5 >Errors</h5>
+<ul>
+<li><code>validation</code> (400 Bad Request) - The information you submitted did not validate</li>
+</ul>
 <h4 id="delete-a-thing">Delete a thing</h4>
 <p><em><a href="/api/#authorization">Authorization</a> needed</em></p>
 
