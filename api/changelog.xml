@@ -2,13 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://developers.flattr.net/</id>
   <title>Flattr API Changelog</title>
-  <updated>2012-03-08T23:00:00Z</updated>
+  <updated>2012-03-22T23:00:00Z</updated>
   <link rel="alternate" href="http://developers.flattr.net/"/>
   <link rel="self" href="http://developers.flattr.net/api/changelog.xml"/>
   <author>
     <name>Flattr</name>
     <uri>flattr:</uri>
   </author>
+  <entry>
+    <id>tag:developers.flattr.net,2012-03-23:/api/changelog/new_scope_added_email/</id>
+    <title type="html">New scope added email</title>
+    <published>2012-03-22T23:00:00Z</published>
+    <updated>2012-03-22T23:00:00Z</updated>
+    <link rel="alternate" href="http://developers.flattr.net/api/changelog/new_scope_added_email/"/>
+    <content type="html">&lt;p&gt;A new scope was added today called &lt;code&gt;email&lt;/code&gt;. This scope will give you access to the users email address.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:developers.flattr.net,2012-03-09:/api/changelog/receive_full_objects/</id>
     <title type="html">Receive full resources instead of small</title>
@@ -194,16 +203,6 @@ X-RateLimit-Remaining: 4999&lt;/code&gt;&lt;/pre&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:developers.flattr.net,2012-01-25:/api/changelog/remove_attribute_flattrs_current_period/</id>
-    <title type="html">Remove flattrs_current_period attribute from thing resource</title>
-    <published>2012-01-24T23:00:00Z</published>
-    <updated>2012-01-24T23:00:00Z</updated>
-    <link rel="alternate" href="http://developers.flattr.net/api/changelog/remove_attribute_flattrs_current_period/"/>
-    <content type="html">&lt;p&gt;Since the content of &lt;code&gt;flattrs_current_period&lt;/code&gt; were not correct the
-attribute is now removed.&lt;/p&gt;
 </content>
   </entry>
 </feed>
