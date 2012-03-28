@@ -84,6 +84,7 @@
 <ul>
 <li><strong>mode</strong> - auto | manual(default)</li>
 <li><strong>https</strong> - 1 | 0 (defaults to the schema of load.js)</li>
+<li><strong>popout</strong> - 1 | 0 (show popout when hovering mouse over button)</li>
 <li><strong>uid</strong> - username</li>
 <li><strong>button</strong> - compact | default</li>
 <li><strong>language</strong> - can be set to any of the available languages</li>
@@ -135,6 +136,7 @@ In other words if you want to use HTTPS buttons then load <code>load.js</code> u
 <li><p><strong>language</strong> ( Optional ) - Specifies which language your thing is in. Specifying the language will allow visitors on Flattr to filter through the large amount of things and get a personalized feed of items in their selected languages. The value must be a language code from the <a href="https://api.flattr.com/rest/v2/languages.txt">available languages</a>. Note that even tho this parameter is optional, a language will be guessed and added automatically if it is omitted.</p></li>
 <li><p><strong>tags</strong> ( Optional) - This parameter allows you to add tags that can be used to describe your thing. This is used on Flattr to allow further filtering and sorting of things. Multiple tags are seperated by a comma <code>,</code>. Using non alpha characters in tags are not supported nor is using a comma for obvious reasons.</p></li>
 <li><p><strong>button</strong> ( Optional ) - We also provide a compact version of our Flattr button. This parameter tells the embedded button script which button layout to use. Set this parameter to <code>compact</code> if you want the compact button. Don&#39;t set the parameter at all if you are fine with the normal button.</p></li>
+<li><p><strong>popout</strong> ( Optional ) - Set this parameter to <code>0</code> to disable the popout that appears when hovering the mouse cursor over the button.</p></li>
 <li><p><strong>hidden</strong> ( Optional ) - Not all content is suitable for public listing. If you for one reason or another don&#39;t want your content to be listed on Flattr set this parameter to <code>1</code>.</p></li>
 </ul>
 <h3 id="defining-the-button-with-html">Defining the button with HTML</h3>
