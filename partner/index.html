@@ -103,8 +103,24 @@
 <ul>
 <li>E-mail addresses, MD5 hashed. Eg: <code>email:05f8b3480b04f6a516bb1a46e556323c</code></li>
 <li>Twitter user ids. Eg. <code>twitter:user:id:123</code></li>
-<li><em>(upcoming)</em> Facebook user ids. Eg. <code>facebook:user:id:123</code></li>
-<li><em>(upcoming)</em> SoundCloud user ids. Eg. <code>soundcloud:user:id:123</code></li>
+<li>Partner ids. Eg. <code>partner:namespace:123</code></li>
+</ul>
+<h3 id="verifying-custom-identifiers">Verifying custom identifiers</h3>
+<p>If we have arranged it so that you can verify that a given Flattr account is owned by a user on your system, you can use a simple API call to associate the two accounts. This will make all pending things associated with the user on your system to automatically be claimed by the Flattr account.</p>
+<h5 >Parameters</h5>
+<ul>
+<li><strong>identity</strong> - The URI that you want to associate with the Flattr account, e.g. &quot;partner:namespace:123&quot; where &quot;123&quot; is e.g. the ID number of a user on your system. Contact us if you do not know what your partner namespace is.</li>
+</ul>
+<h5 >Request</h5><pre class="highlight"><code>POST https://api.flattr.com/rest/v2/users/:username/verify
+</code></pre><h5 >Verify an authenticated user</h5><pre class="highlight"><code>POST https://api.flattr.com/rest/v2/user/verify
+</code></pre><h5 >Example response</h5>
+<pre class="headers"><code>Status: 200 OK
+Content-type: application/json;charset=utf-8
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999</code></pre>
+<h5 >Errors</h5>
+<ul>
+<li><code>unauthorized</code>  (401 Unauthorized) - You are either not logged in, are providing an invalid identifier, or are not allowed to verify the provided identifier.</li>
 </ul>
 
     </div>
