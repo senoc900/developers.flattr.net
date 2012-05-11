@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>Flattrs show on things - Flattr Developers</title>
+
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/custom.css">
+  <link rel="stylesheet" href="/styles/syntax.css">
+  <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/">Flattr Developer Platform</a></h1>
+
+    <ul class="nav">
+      <li>
+        <a href="/api">REST API</a>
+        <ul>
+          <li>
+            <span>Resources</span>
+            <ul>
+              <li><a href="/api/resources/flattrs">Flattrs</a></li>
+              <li><a href="/api/resources/things">Things</a></li>
+              <li><a href="/api/resources/users">Users</a></li>
+              <li><a href="/api/resources/activities">Activities</a></li>
+              <li><a href="/api/resources/categories">Categories</a></li>
+              <li><a href="/api/resources/languages">Languages</a></li>
+            </ul>
+          </li>
+          <li><a href="http://console.apihq.com/api/flattr" target="_blank">Console</a></li>
+          <li><a href="/api/changelog">Changelog</a></li>
+          <li><a href="/api/libraries">Clients</a></li>
+          <li><a href="/api/policy">Policy</a></li>
+        </ul>
+      </li>
+      <li><a href="/button">Embedded buttons</a></li>
+      <li><a href="/auto-submit">Auto-submit URL</a></li>
+      <li><a href="/feed">Flattr in feeds</a></li>
+      <li><a href="/partner">Partner site integration</a></li>
+      <li><a href="/api/questions">Questions</a></li>
+
+    </ul>
+
+    <div class="page">
+      <div class="header">
+        <h2>Flattrs show on things</h2>
+        <div class="subtitle"></div>
+      </div>
+      <p>Now number of flattrs show up on things when requesting the flattr resource. Our small representations of things had everything you needed except the <code>flattrs</code>, but now they are there. This means that you can easily create lists without requesting to much information, speed is everything.</p>
+<h5 >Example request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/users/smgt/flattrs
+</code></pre><h5 >Example response</h5>
+<pre class="headers"><code>Status: 200 OK
+Content-type: application/json;charset=utf-8
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999</code></pre>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;flattr&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;thing&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/things/313733&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/thing/313733&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">313733</span><span class="p">,</span>
+    <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/profile/gnuproject&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;GNU&#39;s not Unix!&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;image&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/thing/image/3/1/3/7/3/3/medium.png&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flattrs&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/users/gnuproject&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/user/gnuproject&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;gnuproject&quot;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/users/qzio&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/user/qzio&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;qzio&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;created_at&quot;</span><span class="o">:</span> <span class="mi">1316697578</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+    </div>
+    <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>
+
+  </div>
+
+  <script src="/js/ender.js"></script>
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-13236450-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

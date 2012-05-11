@@ -2,13 +2,57 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://developers.flattr.net/</id>
   <title>Flattr API Changelog</title>
-  <updated>2012-03-22T23:00:00Z</updated>
+  <updated>2012-05-10T22:00:00Z</updated>
   <link rel="alternate" href="http://developers.flattr.net/"/>
   <link rel="self" href="http://developers.flattr.net/api/changelog.xml"/>
   <author>
     <name>Flattr</name>
     <uri>flattr:</uri>
   </author>
+  <entry>
+    <id>tag:developers.flattr.net,2012-05-11:/api/changelog/flattrs_show_on_things/</id>
+    <title type="html">Flattrs show on things</title>
+    <published>2012-05-10T22:00:00Z</published>
+    <updated>2012-05-10T22:00:00Z</updated>
+    <link rel="alternate" href="http://developers.flattr.net/api/changelog/flattrs_show_on_things/"/>
+    <content type="html">&lt;p&gt;Now number of flattrs show up on things when requesting the flattr resource. Our small representations of things had everything you needed except the &lt;code&gt;flattrs&lt;/code&gt;, but now they are there. This means that you can easily create lists without requesting to much information, speed is everything.&lt;/p&gt;
+&lt;h5 &gt;Example request&lt;/h5&gt;&lt;pre class="highlight"&gt;&lt;code&gt;GET https://api.flattr.com/rest/v2/users/smgt/flattrs
+&lt;/code&gt;&lt;/pre&gt;&lt;h5 &gt;Example response&lt;/h5&gt;
+&lt;pre class="headers"&gt;&lt;code&gt;Status: 200 OK
+Content-type: application/json;charset=utf-8
+X-RateLimit-Limit: 5000
+X-RateLimit-Remaining: 4999&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;flattr&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;thing&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;thing&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;resource&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://api.flattr.com/rest/v2/things/313733&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;link&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/thing/313733&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;313733&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;url&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/profile/gnuproject&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;GNU&amp;#39;s not Unix!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;image&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/thing/image/3/1/3/7/3/3/medium.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;flattrs&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;owner&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;user&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="s2"&gt;&amp;quot;resource&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://api.flattr.com/rest/v2/users/gnuproject&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="s2"&gt;&amp;quot;link&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/user/gnuproject&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="s2"&gt;&amp;quot;username&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gnuproject&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;owner&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;user&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;resource&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://api.flattr.com/rest/v2/users/qzio&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;link&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/user/qzio&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;username&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;qzio&amp;quot;&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;created_at&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1316697578&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:developers.flattr.net,2012-03-23:/api/changelog/new_scope_added_email/</id>
     <title type="html">New scope added email</title>
@@ -141,6 +185,7 @@ X-RateLimit-Remaining: 4999&lt;/code&gt;&lt;/pre&gt;
       &lt;span class="s2"&gt;&amp;quot;url&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/profile/gnuproject&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
       &lt;span class="s2"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;GNU&amp;#39;s not Unix!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
       &lt;span class="s2"&gt;&amp;quot;image&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/thing/image/3/1/3/7/3/3/medium.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="s2"&gt;&amp;quot;flattrs&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
       &lt;span class="s2"&gt;&amp;quot;owner&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
         &lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;user&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
         &lt;span class="s2"&gt;&amp;quot;resource&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://api.flattr.com/rest/v2/users/gnuproject&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -169,40 +214,6 @@ X-RateLimit-Remaining: 4999&lt;/code&gt;&lt;/pre&gt;
     <link rel="alternate" href="http://developers.flattr.net/api/changelog/add_sort_to_things_search/"/>
     <content type="html">&lt;p&gt;You can now sort things when searching in the API by &lt;code&gt;trend&lt;/code&gt;, &lt;code&gt;flattrs&lt;/code&gt;
 or &lt;code&gt;relevance&lt;/code&gt;. Relevance is the default sort behaviour.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:developers.flattr.net,2012-01-26:/api/changelog/flattr_shows_thing/</id>
-    <title type="html">Flattr resource now returns a thing</title>
-    <published>2012-01-25T23:00:00Z</published>
-    <updated>2012-01-25T23:00:00Z</updated>
-    <link rel="alternate" href="http://developers.flattr.net/api/changelog/flattr_shows_thing/"/>
-    <content type="html">&lt;p&gt;When you flattr a thing from the API you now get a small thing object if
-the flattr was successful. It also returns a &lt;code&gt;location&lt;/code&gt; but that
-attribute is now deprecated in favour of the &lt;code&gt;thing&lt;/code&gt; attribute.
-&lt;code&gt;location&lt;/code&gt; will be removed in due time.&lt;/p&gt;
-&lt;h5 &gt;Example request&lt;/h5&gt;&lt;pre class="highlight"&gt;&lt;code&gt;POST https://api.flattr.com/rest/v2/things/423405/flattr
-&lt;/code&gt;&lt;/pre&gt;&lt;h5 &gt;Example response&lt;/h5&gt;
-&lt;pre class="headers"&gt;&lt;code&gt;Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="s2"&gt;&amp;quot;message&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ok&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="s2"&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Thing was successfully flattred&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="s2"&gt;&amp;quot;thing&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;thing&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;resource&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://api.flattr.dev/rest/v2/things/423405&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;link&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.dev/thing/423405&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;423405&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;url&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;http://blog.flattr.net/2011/10/api-v2-beta-out-whats-changed/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;API v2 beta out - what&amp;#39;s changed?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;image&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/thing/image/4/2/3/4/0/5/medium.png&amp;quot;&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
 </content>
   </entry>
 </feed>
