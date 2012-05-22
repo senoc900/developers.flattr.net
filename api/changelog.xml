@@ -54,6 +54,15 @@ X-RateLimit-Remaining: 4999&lt;/code&gt;&lt;/pre&gt;
 </content>
   </entry>
   <entry>
+    <id>tag:developers.flattr.net,2012-04-30:/api/changelog/clarified_flattr_resource/</id>
+    <title type="html">Clarified flattr resource</title>
+    <published>2012-04-29T22:00:00Z</published>
+    <updated>2012-04-29T22:00:00Z</updated>
+    <link rel="alternate" href="http://developers.flattr.net/api/changelog/clarified_flattr_resource/"/>
+    <content type="html">&lt;p&gt;Updated the documentation of the &lt;a href="http://developers.flattr.net/api/resources/flattrs/#flattr-a-url"&gt;flattr-resource&lt;/a&gt; so that it&amp;#39;s clearer what kind of URL:s that can be flattred.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <id>tag:developers.flattr.net,2012-03-23:/api/changelog/new_scope_added_email/</id>
     <title type="html">New scope added email</title>
     <published>2012-03-22T23:00:00Z</published>
@@ -204,16 +213,6 @@ X-RateLimit-Remaining: 4999&lt;/code&gt;&lt;/pre&gt;
 &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/div&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:developers.flattr.net,2012-01-30:/api/changelog/add_sort_to_things_search/</id>
-    <title type="html">Add sorting to things search</title>
-    <published>2012-01-29T23:00:00Z</published>
-    <updated>2012-01-29T23:00:00Z</updated>
-    <link rel="alternate" href="http://developers.flattr.net/api/changelog/add_sort_to_things_search/"/>
-    <content type="html">&lt;p&gt;You can now sort things when searching in the API by &lt;code&gt;trend&lt;/code&gt;, &lt;code&gt;flattrs&lt;/code&gt;
-or &lt;code&gt;relevance&lt;/code&gt;. Relevance is the default sort behaviour.&lt;/p&gt;
 </content>
   </entry>
 </feed>
