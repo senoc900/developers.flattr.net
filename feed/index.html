@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 
-  <title>Flattr in feeds - Flattr Developers</title>
+  <title>Flattr in feeds and HTML - Flattr Developers</title>
 
   <link rel="stylesheet" href="/styles/base.css">
   <link rel="stylesheet" href="/styles/custom.css">
@@ -37,7 +37,7 @@
       </li>
       <li><a href="/button">Embedded buttons</a></li>
       <li><a href="/auto-submit">Auto-submit URL</a></li>
-      <li><a href="/feed">Flattr in feeds</a></li>
+      <li><a href="/feed">Flattr in feeds and HTML</a></li>
       <li><a href="/partner">Partner site integration</a></li>
       <li><a href="/tools">Tools</a></li>
       <li><a href="/api/questions">Questions</a></li>
@@ -46,35 +46,44 @@
 
     <div class="page">
       <div class="header">
-        <h2>Flattr in feeds</h2>
+        <h2>Flattr in feeds and HTML</h2>
         <div class="subtitle"></div>
       </div>
       <h3 id="introduction">Introduction</h3>
-<p>If you want to include Flattr in your RSS or Atom feeds then this is the recommended way for doing so. Including Flattr in a feed can be useful for podcasts and similar but the same method can also be used in other scenarios.</p>
+<p>If you want to make Flattr discoverable in your RSS or Atom feeds or in your HTML then this is the recommended way for doing so.</p>
+
+<p>Making Flattr discoverable in a feed is useful for eg. podcatchers and in HTML it is useful for eg. browser extensions. The method described in here is not limited to feeds and HTML - it can often be used in other formats as well.</p>
 <h3 id="shorter-version">Shorter version</h3>
-<p>You include Flattr in your feeds by adding payment links, using the standard <em>payment</em> relation, to your feed entries that you point directly to (<em>without any redirects</em>) <a href="/auto-submit/">auto-submit URL:s</a> for those feed entries.</p>
+<p>You include Flattr in your feeds and HTML by adding payment links, using the standard <em>payment</em> relation, to your feed, feed entries or HTML-head that you point directly to (<em>without any redirects</em>) the <a href="/auto-submit/">auto-submit URL:s</a> for that content.</p>
 <h4 id="example">Example</h4>
-<p>In an Atom feed add something like this to an entry:</p>
+<p>In an <strong>Atom feed</strong> add something like this to an entry:</p>
 <div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;payment&quot;</span> <span class="na">href=</span><span class="s">&quot;https://flattr.com/submit/auto?url=https%3A%2F%2Fdevelopers.flattr.net%2F&amp;amp;user_id=flattr&quot;</span> <span class="na">type=</span><span class="s">&quot;text/html&quot;</span> <span class="nt">/&gt;</span>
 </pre>
 </div>
 
-<p>In an item in a RSS feed add this instead:</p>
+<p>In an item in a <strong>RSS feed</strong> add this instead:</p>
 <div class="highlight"><pre><span class="nt">&lt;atom:link</span> <span class="na">rel=</span><span class="s">&quot;payment&quot;</span> <span class="na">href=</span><span class="s">&quot;https://flattr.com/submit/auto?url=https%3A%2F%2Fdevelopers.flattr.net%2F&amp;amp;user_id=flattr&quot;</span> <span class="na">type=</span><span class="s">&quot;text/html&quot;</span> <span class="nt">/&gt;</span>
 </pre>
 </div>
 
-<p>And in a RSS feed also make sure that the RSS-container itself knows of the atom:link-tag by adding the atom-namespace:</p>
+<p>And in a <strong>RSS feed</strong> also make sure that the RSS-container itself knows of the atom:link-tag by adding the atom-namespace:</p>
 <div class="highlight"><pre><span class="nt">&lt;rss</span> <span class="na">xmlns:atom=</span><span class="s">&quot;http://www.w3.org/2005/Atom&quot;</span><span class="nt">&gt;</span>
+</pre>
+</div>
+
+<p>In <strong>HTML</strong> add something like this to the head-tag of the document:</p>
+<div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;payment&quot;</span> <span class="na">href=</span><span class="s">&quot;https://flattr.com/submit/auto?url=https%3A%2F%2Fdevelopers.flattr.net%2F&amp;amp;user_id=flattr&quot;</span> <span class="na">type=</span><span class="s">&quot;text/html&quot;</span> <span class="nt">/&gt;</span>
 </pre>
 </div>
 <h3 id="client-support">Client support</h3>
 <ul>
-<li><a href="https://play.google.com/store/apps/details?id=com.podkicker">Podkicker Pro Podcast Player</a></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.podkicker">Podkicker Pro Podcast Player</a> (Support for feeds)</li>
+<li><a href="https://chrome.google.com/webstore/detail/opjnhfkbdoopgfbefgbdkpjnbghffmln">Flattr Chrome Extension</a> (Support for HTML)</li>
+<li><em>Soon:</em> <a href="https://addons.mozilla.org/firefox/addon/flattr/">Flattr Firefox Add-on</a> (Support for HTML)</li>
 </ul>
 <h3 id="provider-support">Provider support</h3>
 <ul>
-<li><a href="http://wordpress.org/extend/plugins/flattr/">WordPress Flattr plugin</a></li>
+<li><a href="http://wordpress.org/extend/plugins/flattr/">WordPress Flattr plugin</a> (Support for feeds and HTML)</li>
 </ul>
 <h3 id="longer-version">Longer version</h3>
 <p>What is this standard payment relation that we suggest you to use? It&#39;s the one defined in the &quot;Web Linking&quot; standard <a href="http://tools.ietf.org/html/rfc5988#page-14">RFC5988</a> and fits the use case perfectly, being defined as usable for eg. tipjars.</p>
