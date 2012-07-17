@@ -76,6 +76,7 @@ code {
 pre code {
 	border: 0;
 	background-color: none;
+  padding: 0;
 }
 
 .highlight {
@@ -332,3 +333,14 @@ address,
 address a {
   color: #ccc;
 }
+
+#toc ul {
+  margin-top: 1em;
+}
+
+#toc ul li {
+  list-style:none;
+  margin-bottom: 8px;
+
+}
+

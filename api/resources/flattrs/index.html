@@ -50,7 +50,14 @@
         <h2>Flattrs</h2>
         <div class="subtitle"></div>
       </div>
-      <h4 id="list-a-users-flattrs">List a users flattrs</h4><h5 >Parameters</h5>
+      <div id="toc"><h5>Table of contents</h5>
+<ul>
+<li><a href="#list-a-users-flattrs">List a users flattrs</a></li>
+<li><a href="#list-the-authenticated-users-flattrs">List the authenticated users flattrs</a></li>
+<li><a href="#list-a-things-flattrs">List a things flattrs</a></li>
+<li><a href="#flattr-a-thing">Flattr a thing</a></li>
+<li><a href="#flattr-a-url">Flattr a URL</a></li></ul></div>
+<h4 id="list-a-users-flattrs">List a users flattrs</h4><h5 >Parameters</h5>
 <ul>
 <li><strong>count</strong> ( <em>Optional</em> ) - Number of records to receive ( default: 30 )</li>
 <li><strong>page</strong> ( <em>Optional</em> ) - Page of results to retreive (first page is 1)</li>
@@ -58,10 +65,12 @@
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/users/:username/flattrs
 </code></pre><h5 >Example response</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">[</span>
   <span class="p">{</span>
@@ -107,10 +116,12 @@ X-RateLimit-Remaining: 4999</code></pre>
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/user/flattrs
 </code></pre><h5 >Example response</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">[</span>
   <span class="p">{</span>
@@ -154,10 +165,12 @@ X-RateLimit-Remaining: 4999</code></pre>
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/:id/flattrs
 </code></pre><h5 >Example response</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">[</span>
   <span class="p">{</span>
@@ -197,10 +210,12 @@ X-RateLimit-Remaining: 4999</code></pre>
 <p><strong>Scope required</strong>: flattr</p>
 <h5 >Request</h5><pre class="highlight"><code>POST https://api.flattr.com/rest/v2/things/:id/flattr
 </code></pre><h5 >Example response</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
@@ -253,10 +268,12 @@ the thing</li>
 </pre>
 </div>
 <h5 >Example response to autosubmit URL</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>

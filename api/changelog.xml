@@ -2,13 +2,45 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://developers.flattr.net/</id>
   <title>Flattr API Changelog</title>
-  <updated>2012-05-10T22:00:00Z</updated>
+  <updated>2012-07-16T22:00:00Z</updated>
   <link rel="alternate" href="http://developers.flattr.net/"/>
   <link rel="self" href="http://developers.flattr.net/api/changelog.xml"/>
   <author>
     <name>Flattr</name>
     <uri>flattr:</uri>
   </author>
+  <entry>
+    <id>tag:developers.flattr.net,2012-07-17:/api/changelog/add_rate_limit/</id>
+    <title type="html">Add rate limit resource</title>
+    <published>2012-07-16T22:00:00Z</published>
+    <updated>2012-07-16T22:00:00Z</updated>
+    <link rel="alternate" href="http://developers.flattr.net/api/changelog/add_rate_limit/"/>
+    <content type="html">&lt;p&gt;Added a new resource where you can find out your current rate limit.&lt;/p&gt;
+&lt;h5 &gt;Example request&lt;/h5&gt;&lt;pre class="highlight"&gt;&lt;code&gt;GET https://api.flattr.com/rest/v2/rate_limit
+&lt;/code&gt;&lt;/pre&gt;&lt;h5 &gt;Example response&lt;/h5&gt;
+&lt;pre class="headers"&gt;&lt;code&gt;HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;hourly_limit&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;remaining_hits&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;986&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;current_hits&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;reset_time_in_seconds&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1342521939&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;reset_time&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Tue, 17 Jul 2012 10:45:39 +0000 GMT&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;There is also two new headers, &lt;code&gt;X-RateLimit-Current&lt;/code&gt; and &lt;code&gt;X-RateLimit-Reset&lt;/code&gt;, included when you request data from a rate limited resource.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;X-RateLimit-Limit&lt;/code&gt; - Current rate limit.&lt;br&gt;
+&lt;code&gt;X-RateLimit-Remaining&lt;/code&gt; - Requests left during the current period.&lt;br&gt;
+&lt;code&gt;X-RateLimit-Current&lt;/code&gt; - Requests you have made during the current period.&lt;br&gt;
+&lt;code&gt;X-RateLimit-Reset&lt;/code&gt; - When your period ends you get new request. It&amp;#39;s a unix timestamp.   &lt;/p&gt;
+
+&lt;p&gt;More information about rate limiting is available in the &lt;a href="/api/#rate-limiting"&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <id>tag:developers.flattr.net,2012-05-11:/api/changelog/flattrs_show_on_things/</id>
     <title type="html">Flattrs show on things</title>
@@ -18,10 +50,12 @@
     <content type="html">&lt;p&gt;Now number of flattrs show up on things when requesting the flattr resource. Our small representations of things had everything you needed except the &lt;code&gt;flattrs&lt;/code&gt;, but now they are there. This means that you can easily create lists without requesting to much information, speed is everything.&lt;/p&gt;
 &lt;h5 &gt;Example request&lt;/h5&gt;&lt;pre class="highlight"&gt;&lt;code&gt;GET https://api.flattr.com/rest/v2/users/smgt/flattrs
 &lt;/code&gt;&lt;/pre&gt;&lt;h5 &gt;Example response&lt;/h5&gt;
-&lt;pre class="headers"&gt;&lt;code&gt;Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="headers"&gt;&lt;code&gt;HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939&lt;/code&gt;&lt;/pre&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;flattr&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -83,10 +117,12 @@ X-RateLimit-Remaining: 4999&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Example fetching a thing&lt;/p&gt;
 &lt;h5 &gt;Request without &lt;code&gt;full&lt;/code&gt; parameter&lt;/h5&gt;&lt;pre class="highlight"&gt;&lt;code&gt;GET https://api.flattr.com/rest/v2/things/450287
 &lt;/code&gt;&lt;/pre&gt;&lt;h6 &gt;Response&lt;/h6&gt;
-&lt;pre class="headers"&gt;&lt;code&gt;Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="headers"&gt;&lt;code&gt;HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;450287&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
   &lt;span class="s2"&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;A ruby gem wrapping Flattrs API.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -164,55 +200,6 @@ and &lt;code&gt;link&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;As you can see the full &lt;code&gt;owner&lt;/code&gt; object is included in the response.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <id>tag:developers.flattr.net,2012-02-10:/api/changelog/thing_flattrs/</id>
-    <title type="html">Fetch who flattrd a thing</title>
-    <published>2012-02-09T23:00:00Z</published>
-    <updated>2012-02-09T23:00:00Z</updated>
-    <link rel="alternate" href="http://developers.flattr.net/api/changelog/thing_flattrs/"/>
-    <content type="html">&lt;p&gt;Now you can get information about who flattred a specific thing. Read
-more about it in the &lt;a href="http://developers.flattr.net/api/resources/flattrs/#list-a-things-flattrs"&gt;thing resource&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Example (i have made the response shorter):&lt;/p&gt;
-&lt;h5 &gt;Request&lt;/h5&gt;&lt;pre class="highlight"&gt;&lt;code&gt;GET https://api.flattr.com/rest/v2/things/313733/flattrs
-&lt;/code&gt;&lt;/pre&gt;&lt;h5 &gt;Response&lt;/h5&gt;
-&lt;pre class="headers"&gt;&lt;code&gt;Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;
-  &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;flattr&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;thing&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;thing&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;resource&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://api.flattr.com/rest/v2/things/313733&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;link&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/thing/313733&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;313733&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;url&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/profile/gnuproject&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;GNU&amp;#39;s not Unix!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;image&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/thing/image/3/1/3/7/3/3/medium.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;flattrs&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;owner&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;user&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;resource&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://api.flattr.com/rest/v2/users/gnuproject&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;link&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/user/gnuproject&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="s2"&gt;&amp;quot;username&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;gnuproject&amp;quot;&lt;/span&gt;
-      &lt;span class="p"&gt;}&lt;/span&gt;
-    &lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;owner&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;user&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;resource&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://api.flattr.com/rest/v2/users/qzio&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;link&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;https://flattr.com/user/qzio&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="s2"&gt;&amp;quot;username&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;qzio&amp;quot;&lt;/span&gt;
-    &lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;created_at&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1316697578&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/div&gt;
 </content>
   </entry>
 </feed>

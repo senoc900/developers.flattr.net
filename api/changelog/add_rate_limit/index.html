@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 
-  <title>Flattr resource now returns a thing - Flattr Developers</title>
+  <title>Add rate limit resource - Flattr Developers</title>
 
   <link rel="stylesheet" href="/styles/base.css">
   <link rel="stylesheet" href="/styles/custom.css">
@@ -47,38 +47,33 @@
 
     <div class="page">
       <div class="header">
-        <h2>Flattr resource now returns a thing</h2>
+        <h2>Add rate limit resource</h2>
         <div class="subtitle"></div>
       </div>
-      <p>When you flattr a thing from the API you now get a small thing object if
-the flattr was successful. It also returns a <code>location</code> but that
-attribute is now deprecated in favour of the <code>thing</code> attribute.
-<code>location</code> will be removed in due time.</p>
-<h5 >Example request</h5><pre class="highlight"><code>POST https://api.flattr.com/rest/v2/things/423405/flattr
+      <p>Added a new resource where you can find out your current rate limit.</p>
+<h5 >Example request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/rate_limit
 </code></pre><h5 >Example response</h5>
 <pre class="headers"><code>HTTP/1.1 200 OK
-Content-Type: application/json;charset=utf-8
-X-RateLimit-Limit: 1000
-X-RateLimit-Remaining: 999
-X-RateLimit-Current: 1
-X-RateLimit-Reset: 1342521939</code></pre>
+Content-Type: application/json;charset=utf-8</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
-  <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Thing was successfully flattred&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;thing&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.dev/rest/v2/things/423405&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.dev/thing/423405&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">423405</span><span class="p">,</span>
-    <span class="s2">&quot;flattrs&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;http://blog.flattr.net/2011/10/api-v2-beta-out-whats-changed/&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;API v2 beta out - what&#39;s changed?&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;image&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/thing/image/4/2/3/4/0/5/medium.png&quot;</span>
-  <span class="p">}</span>
+  <span class="s2">&quot;hourly_limit&quot;</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+  <span class="s2">&quot;remaining_hits&quot;</span><span class="o">:</span> <span class="mi">986</span><span class="p">,</span>
+  <span class="s2">&quot;current_hits&quot;</span><span class="o">:</span> <span class="mi">14</span><span class="p">,</span>
+  <span class="s2">&quot;reset_time_in_seconds&quot;</span><span class="o">:</span> <span class="mi">1342521939</span><span class="p">,</span>
+  <span class="s2">&quot;reset_time&quot;</span><span class="o">:</span> <span class="s2">&quot;Tue, 17 Jul 2012 10:45:39 +0000 GMT&quot;</span>
 <span class="p">}</span>
 </pre>
 </div>
+
+<p>There is also two new headers, <code>X-RateLimit-Current</code> and <code>X-RateLimit-Reset</code>, included when you request data from a rate limited resource.</p>
+
+<p><code>X-RateLimit-Limit</code> - Current rate limit.<br>
+<code>X-RateLimit-Remaining</code> - Requests left during the current period.<br>
+<code>X-RateLimit-Current</code> - Requests you have made during the current period.<br>
+<code>X-RateLimit-Reset</code> - When your period ends you get new request. It&#39;s a unix timestamp.   </p>
+
+<p>More information about rate limiting is available in the <a href="/api/#rate-limiting">documentation</a>.</p>
 
     </div>
     <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>

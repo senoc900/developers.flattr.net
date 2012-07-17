@@ -117,10 +117,12 @@
 <h5 >Request</h5><pre class="highlight"><code>POST https://api.flattr.com/rest/v2/users/:username/verify
 </code></pre><h5 >Verify an authenticated user</h5><pre class="highlight"><code>POST https://api.flattr.com/rest/v2/user/verify
 </code></pre><h5 >Example response</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 <h5 >Errors</h5>
 <ul>
 <li><code>unauthorized</code>  (401 Unauthorized) - You are either not logged in, are providing an invalid identifier, or are not allowed to verify the provided identifier.</li>

@@ -59,13 +59,6 @@
 </ul>
 
 <p>All resource paths are relative to the API-endpoint.</p>
-<h3 id="rate-limiting">Rate limiting</h3>
-<p>Two headers regarding limit is sent in every response.</p>
-<pre class="highlight"><code>X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999
-</code></pre>
-<p>X-RateLimit-Limit: is the current max requests.
-X-RateLimit-Remaining is how many requests you have left until you are blocked temporary. When that happens, a <em>rate<em>limit</em>exceeded</em> error will be returned. Your remaining requests are reseted automatically every hour certain intervall.</p>
 <h2 id="authorization">Authorization</h2>
 <p>To gain access to private data clients need to use <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-21">OAuth 2</a>. OAuth 2 is a standardized protocol for how to allow end users to authorize clients to gain access to their private data in the form of access tokens. OAuth 2 rely on separate standards for the access tokens - we currently use <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-08">Bearer tokens</a> which are the simplest and most widespread token type.</p>
 
@@ -169,10 +162,12 @@ code and a body with information about the error.</p>
 </ul>
 <h5 >Example request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/nothing_here
 </code></pre><h5 >Response</h5>
-<pre class="headers"><code>Status: 404 Not Found
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 404 Not Found
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="s2">&quot;not_found&quot;</span><span class="p">,</span>
@@ -206,6 +201,35 @@ adding a suffix for the file format to the URL (ex. <strong>categories.xml</stro
 
 <p>When using POST, PATCH or PUT <strong>application/json</strong> and
 <strong>application/x-www-form-urlencoded</strong> are valid formats of the request&#39;s own content.</p>
+<h3 id="rate-limiting">Rate limiting</h3>
+<p>Four headers regarding rate limit is sent in all responses where rate limit is applied.</p>
+<pre class="highlight"><code>X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939
+</code></pre>
+<p><code>X-RateLimit-Limit</code> - Current rate limit.<br>
+<code>X-RateLimit-Remaining</code> - Requests left during the current period.<br>
+<code>X-RateLimit-Current</code> - Requests you have made during the current period.<br>
+<code>X-RateLimit-Reset</code> - When your period ends you get new request. It&#39;s a unix timestamp.   </p>
+
+<p>When you exceed your rate limit a <code>rate_limit_exceeded</code> error will be returned on all rate limited resources. Your requests are <strong>reset every hour</strong>.</p>
+
+<p>There is also a resourse where you can check the current rate limit (this resource is not rate limited).</p>
+<h5 >Example request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/rate_limit
+</code></pre><h5 >Response</h5>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8</code></pre>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;hourly_limit&quot;</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+  <span class="s2">&quot;remaining_hits&quot;</span><span class="o">:</span> <span class="mi">986</span><span class="p">,</span>
+  <span class="s2">&quot;current_hits&quot;</span><span class="o">:</span> <span class="mi">14</span><span class="p">,</span>
+  <span class="s2">&quot;reset_time_in_seconds&quot;</span><span class="o">:</span> <span class="mi">1342521939</span><span class="p">,</span>
+  <span class="s2">&quot;reset_time&quot;</span><span class="o">:</span> <span class="s2">&quot;Tue, 17 Jul 2012 10:45:39 +0000 GMT&quot;</span>
+<span class="p">}</span>
+</pre>
+</div>
 
     </div>
     <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>

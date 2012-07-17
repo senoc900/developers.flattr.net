@@ -50,7 +50,18 @@
         <h2>Things</h2>
         <div class="subtitle"></div>
       </div>
-      <h4 id="list-a-users-things">List a users things</h4><h5 >Parameters</h5>
+      <div id="toc"><h5>Table of contents</h5>
+<ul>
+<li><a href="#list-a-users-things">List a users things</a></li>
+<li><a href="#list-a-authenticated-users-things">List a authenticated users things</a></li>
+<li><a href="#get-a-thing">Get a thing</a></li>
+<li><a href="#get-multiple-things">Get multiple things</a></li>
+<li><a href="#check-if-a-thing-exists">Check if a thing exists</a></li>
+<li><a href="#create-a-thing">Create a thing</a></li>
+<li><a href="#update-a-thing">Update a thing</a></li>
+<li><a href="#delete-a-thing">Delete a thing</a></li>
+<li><a href="#search-things">Search things</a></li></ul></div>
+<h4 id="list-a-users-things">List a users things</h4><h5 >Parameters</h5>
 <ul>
 <li><strong>count</strong> ( <em>Optional</em> ) - Number of records to receive ( default: 30 )</li>
 <li><strong>page</strong> ( <em>Optional</em> ) - Page of results to retreive ( first page is 1 )</li>
@@ -58,10 +69,12 @@
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/users/:username/things
 </code></pre><h5 >Example response</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
@@ -104,10 +117,12 @@ X-RateLimit-Remaining: 4999</code></pre>
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/user/things
 </code></pre><h5 >Example response</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">[</span>
   <span class="p">{</span>
@@ -148,10 +163,12 @@ X-RateLimit-Remaining: 4999</code></pre>
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/:id
 </code></pre><h5 >Example response without an access token (public)</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
@@ -184,10 +201,12 @@ X-RateLimit-Remaining: 4999</code></pre>
 <li><code>not_found</code> (404 Not Found) - the thing can not be found</li>
 </ul>
 <h5 >Example response when resource owner don&#39;t own the thing</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
@@ -217,10 +236,12 @@ X-RateLimit-Remaining: 4999</code></pre>
 </pre>
 </div>
 <h5 >Example response when resource owner owns the thing</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
@@ -259,10 +280,12 @@ comma (<code>,</code>).</li>
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/:id,:id
 </code></pre><h5 >Example response</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">[</span>
   <span class="p">{</span>
@@ -331,11 +354,13 @@ X-RateLimit-Remaining: 4999</code></pre>
 </ul>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/lookup/?url=:url
 </code></pre><h5 >Example response when url was found</h5>
-<pre class="headers"><code>Status: 302 Found
-Content-type: application/json;charset=utf-8
+<pre class="headers"><code>HTTP/1.1 302 Found
+Content-Type: application/json;charset=utf-8
 Location: https://api.flattr.com/rest/v2/things/423405
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;found&quot;</span><span class="p">,</span>
@@ -344,10 +369,12 @@ X-RateLimit-Remaining: 4999</code></pre>
 </pre>
 </div>
 <h5 >Example response when url was not found</h5>
-<pre class="headers"><code>Status: 404 Not Found
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 404 Not Found
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;not_found&quot;</span><span class="p">,</span>
@@ -361,11 +388,13 @@ encode the data you pass into the <code>url</code> parameter. For more informati
 check out the <a href="/auto-submit">auto submit documentation</a>.</p>
 <pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/lookup/?url=http://flattr.com/submit/auto?url=http://blog.flattr.net/2011/10/api-v2-beta-out-whats-changed/&amp;user_id=flattr
 </code></pre><h5 >Example response to autosubmit URL</h5>
-<pre class="headers"><code>Status: 302 Found
-Content-type: application/json;charset=utf-8
+<pre class="headers"><code>HTTP/1.1 302 Found
+Content-Type: application/json;charset=utf-8
 Location: https://api.flattr.com/rest/v2/things/423405
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;found&quot;</span><span class="p">,</span>
@@ -401,10 +430,12 @@ X-RateLimit-Remaining: 4999</code></pre>
 </pre>
 </div>
 <h5 >Example response</h5>
-<pre class="headers"><code>Status: 201 Created
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 201 Created
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">431547</span><span class="p">,</span>
@@ -421,10 +452,12 @@ X-RateLimit-Remaining: 4999</code></pre>
 
 <p>example error when an invalid url is submitted</p>
 
-<pre class="headers"><code>Status: 400 Bad Request
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 400 Bad Request
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;error&quot;</span><span class="o">:</span> <span class="s2">&quot;validation&quot;</span><span class="p">,</span>
@@ -462,10 +495,12 @@ PATCH and include the parameter <code>_method</code> with with the value
 </pre>
 </div>
 <h5 >Example response</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
@@ -483,13 +518,15 @@ X-RateLimit-Remaining: 4999</code></pre>
 <p><strong>Scope required</strong>: thing</p>
 <h5 >Request</h5><pre class="highlight"><code>DELETE https://api.flattr.com/rest/v2/things/:id
 </code></pre><h5 >Example response</h5>
-<pre class="headers"><code>Status: 204 No Content
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 204 No Content
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <pre class="highlight"><code></code></pre>
-<h4 id="errors">Errors</h4>
+<h5 >Errors</h5>
 <ul>
 <li><code>forbidden</code> (403 Forbidden) - Cannot delete the thing. Maby it&#39;s not you thing or the scope <code>thing</code> is missing.</li>
 </ul>
@@ -526,10 +563,12 @@ would convert to <code>photos+%26+travel+%26+iphone+!flickr</code>.</p>
 <p>Search after <code>flattr</code> in the <code>software</code> category with the <code>ruby</code> tag</p>
 <pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/search?query=flattr&amp;category=software&amp;tags=ruby
 </code></pre><h5 >Example response</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;total_items&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>

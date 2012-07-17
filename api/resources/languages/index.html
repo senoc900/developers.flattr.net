@@ -50,12 +50,17 @@
         <h2>Languages</h2>
         <div class="subtitle"></div>
       </div>
-      <h4 id="list-all-available-languages">List all available languages</h4><h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/languages
+      <div id="toc"><h5>Table of contents</h5>
+<ul>
+<li><a href="#list-all-available-languages">List all available languages</a></li></ul></div>
+<h4 id="list-all-available-languages">List all available languages</h4><h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/languages
 </code></pre><h5 >Example response</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">[</span>
   <span class="p">{</span>

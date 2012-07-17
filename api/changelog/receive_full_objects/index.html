@@ -56,10 +56,12 @@
 <p>Example fetching a thing</p>
 <h5 >Request without <code>full</code> parameter</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/450287
 </code></pre><h6 >Response</h6>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 <div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">450287</span><span class="p">,</span>
   <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;A ruby gem wrapping Flattrs API.&quot;</span><span class="p">,</span>

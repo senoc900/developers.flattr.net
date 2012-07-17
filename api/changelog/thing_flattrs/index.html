@@ -56,10 +56,12 @@ more about it in the <a href="http://developers.flattr.net/api/resources/flattrs
 <p>Example (i have made the response shorter):</p>
 <h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/things/313733/flattrs
 </code></pre><h5 >Response</h5>
-<pre class="headers"><code>Status: 200 OK
-Content-type: application/json;charset=utf-8
-X-RateLimit-Limit: 5000
-X-RateLimit-Remaining: 4999</code></pre>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">[</span>
   <span class="p">{</span>
