@@ -19,6 +19,7 @@
       <li>
         <a href="/api">REST API</a>
         <ul>
+          <li><a href="/api/#authorization">Authorization</a></li>
           <li>
             <span>Resources</span>
             <ul>
@@ -52,6 +53,8 @@
       </div>
       <div id="toc"><h5>Table of contents</h5>
 <ul>
+<li><a href="#the-thing-object">The Thing object</a></li>
+<li><a href="#the-mini-thing-object">The Mini Thing object</a></li>
 <li><a href="#list-a-users-things">List a users things</a></li>
 <li><a href="#list-a-authenticated-users-things">List a authenticated users things</a></li>
 <li><a href="#get-a-thing">Get a thing</a></li>
@@ -61,6 +64,30 @@
 <li><a href="#update-a-thing">Update a thing</a></li>
 <li><a href="#delete-a-thing">Delete a thing</a></li>
 <li><a href="#search-things">Search things</a></li></ul></div>
+<h4 id="the-thing-object">The Thing object</h4>
+<p><table>
+<thead><tr><th>Field</th><th>Type</th><th>Permission</th><th>Description</th></tr></thead>
+<tbody><tr><td class="mono">type</td><td class="mono">string</td><td></td><td>Object type, set to <code>thing</code>.</td></tr>
+<tr><td class="mono">resource</td><td class="mono">string</td><td></td><td>URL to the API resource</td></tr>
+<tr><td class="mono">link</td><td class="mono">string</td><td></td><td>URL to user on Flattr.com website</td></tr>
+<tr><td class="mono">id</td><td class="mono">int</td><td></td><td>ID of the thing</td></tr>
+<tr><td class="mono">url</td><td class="mono">string</td><td></td><td>URL the thing is pointing to</td></tr>
+<tr><td class="mono">flattrs</td><td class="mono">int</td><td></td><td>Number of flattrs</td></tr>
+<tr><td class="mono">title</td><td class="mono">string</td><td></td><td>Title of the thing</td></tr>
+<tr><td class="mono">image</td><td class="mono">string</td><td></td><td>URL to thing image</td></tr>
+</tbody></table></p>
+<h4 id="the-mini-thing-object">The Mini Thing object</h4>
+<p><table>
+<thead><tr><th>Field</th><th>Type</th><th>Permission</th><th>Description</th></tr></thead>
+<tbody><tr><td class="mono">type</td><td class="mono">string</td><td></td><td>Object type, set to <code>thing</code>.</td></tr>
+<tr><td class="mono">resource</td><td class="mono">string</td><td></td><td>URL to the API resource</td></tr>
+<tr><td class="mono">link</td><td class="mono">string</td><td></td><td>URL to user on Flattr.com website</td></tr>
+<tr><td class="mono">id</td><td class="mono">int</td><td></td><td>ID of the thing</td></tr>
+<tr><td class="mono">url</td><td class="mono">string</td><td></td><td>URL the thing is pointing to</td></tr>
+<tr><td class="mono">flattrs</td><td class="mono">int</td><td></td><td>Number of flattrs</td></tr>
+<tr><td class="mono">title</td><td class="mono">string</td><td></td><td>Title of the thing</td></tr>
+<tr><td class="mono">image</td><td class="mono">string</td><td></td><td>URL to thing image</td></tr>
+</tbody></table></p>
 <h4 id="list-a-users-things">List a users things</h4><h5 >Parameters</h5>
 <ul>
 <li><strong>count</strong> ( <em>Optional</em> ) - Number of records to receive ( default: 30 )</li>
@@ -76,31 +103,33 @@ X-RateLimit-Remaining: 999
 X-RateLimit-Current: 1
 X-RateLimit-Reset: 1342521939</code></pre>
 
-<div class="highlight"><pre><span class="p">{</span>
-  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/things/423405&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/thing/423405&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">423405</span><span class="p">,</span>
-  <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;http://blog.flattr.net/2011/10/api-v2-beta-out-whats-changed/&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;language&quot;</span><span class="o">:</span> <span class="s2">&quot;en_GB&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;category&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/users/flattr&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/profile/flattr&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;flattr&quot;</span>
-  <span class="p">},</span>
-  <span class="s2">&quot;hidden&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-  <span class="s2">&quot;image&quot;</span><span class="o">:</span> <span class="s2">&quot;http://flattr.com/thing/image/4/2/3/4/0/5/medium.png&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;created_at&quot;</span><span class="o">:</span> <span class="mi">1319704532</span><span class="p">,</span>
-  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">&quot;api&quot;</span>
-  <span class="p">],</span>
-  <span class="s2">&quot;flattrs&quot;</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
-  <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;We have been working hard to deliver a great experience for developers and tried to build a good foundation for easily add new features. The API will remain in beta for a while for us to kill quirks and refine some of the resources, this means there might be big changes without notice for ...&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;API v2 beta out - what&#39;s changed?&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;flattred&quot;</span><span class="o">:</span> <span class="kc">false</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/things/423405&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/thing/423405&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">423405</span><span class="p">,</span>
+    <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;http://blog.flattr.net/2011/10/api-v2-beta-out-whats-changed/&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;language&quot;</span><span class="o">:</span> <span class="s2">&quot;en_GB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;category&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/users/flattr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/profile/flattr&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;flattr&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;hidden&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">&quot;image&quot;</span><span class="o">:</span> <span class="s2">&quot;http://flattr.com/thing/image/4/2/3/4/0/5/medium.png&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;created_at&quot;</span><span class="o">:</span> <span class="mi">1319704532</span><span class="p">,</span>
+    <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="s2">&quot;api&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;flattrs&quot;</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;We have been working hard to deliver a great experience for developers and tried to build a good foundation for easily add new features. The API will remain in beta for a while for us to kill quirks and refine some of the resources, this means there might be big changes without notice for ...&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;API v2 beta out - what&#39;s changed?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;flattred&quot;</span><span class="o">:</span> <span class="kc">false</span>
+  <span class="p">}</span>
+<span class="p">]</span>
 </pre>
 </div>
 <h5 >Errors</h5>

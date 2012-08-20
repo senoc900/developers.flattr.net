@@ -19,6 +19,7 @@
       <li>
         <a href="/api">REST API</a>
         <ul>
+          <li><a href="/api/#authorization">Authorization</a></li>
           <li>
             <span>Resources</span>
             <ul>
@@ -52,11 +53,20 @@
       </div>
       <div id="toc"><h5>Table of contents</h5>
 <ul>
+<li><a href="#the-flattr-object">The Flattr object</a></li>
 <li><a href="#list-a-users-flattrs">List a users flattrs</a></li>
 <li><a href="#list-the-authenticated-users-flattrs">List the authenticated users flattrs</a></li>
 <li><a href="#list-a-things-flattrs">List a things flattrs</a></li>
 <li><a href="#flattr-a-thing">Flattr a thing</a></li>
 <li><a href="#flattr-a-url">Flattr a URL</a></li></ul></div>
+<h4 id="the-flattr-object">The Flattr object</h4>
+<p><table>
+<thead><tr><th>Field</th><th>Type</th><th>Permission</th><th>Description</th></tr></thead>
+<tbody><tr><td class="mono">type</td><td class="mono">string</td><td></td><td>Object type, set to <code>flattr</code>.</td></tr>
+<tr><td class="mono">thing</td><td class="mono">hash</td><td></td><td>Contains a <a href="/api/resources/things/#the-thing-object">thing object</a>.</td></tr>
+<tr><td class="mono">owner</td><td class="mono">hash</td><td></td><td>Contains either a <a href="/api/resources/users/#the-user-object">user object</a> or a <a href="/api/resources/users/#the-mini-user-object">mini user object</a> (<strong>default</strong>).</td></tr>
+<tr><td class="mono">created_at</td><td class="mono">string</td><td></td><td>Format is unixtime.</td></tr>
+</tbody></table></p>
 <h4 id="list-a-users-flattrs">List a users flattrs</h4><h5 >Parameters</h5>
 <ul>
 <li><strong>count</strong> ( <em>Optional</em> ) - Number of records to receive ( default: 30 )</li>
