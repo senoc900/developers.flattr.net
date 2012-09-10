@@ -73,8 +73,19 @@
 <tr><td class="mono">id</td><td class="mono">int</td><td></td><td>ID of the thing</td></tr>
 <tr><td class="mono">url</td><td class="mono">string</td><td></td><td>URL the thing is pointing to</td></tr>
 <tr><td class="mono">flattrs</td><td class="mono">int</td><td></td><td>Number of flattrs</td></tr>
+<tr><td class="mono">flattrs_user_count</td><td class="mono">int</td><td></td><td>Number of user who have flattred</td></tr>
 <tr><td class="mono">title</td><td class="mono">string</td><td></td><td>Title of the thing</td></tr>
+<tr><td class="mono">description</td><td class="mono">string</td><td></td><td>Description of the thing</td></tr>
+<tr><td class="mono">tags</td><td class="mono">array</td><td></td><td>Array with tags as strings</td></tr>
+<tr><td class="mono">language</td><td class="mono">string</td><td></td><td><a href="/api/resources/languages/">Langauge</a></td></tr>
+<tr><td class="mono">category</td><td class="mono">string</td><td></td><td><a href="/api/resources/categories/">Category</a></td></tr>
+<tr><td class="mono">created_at</td><td class="mono">int</td><td></td><td>Format is unixtime</td></tr>
+<tr><td class="mono">owner</td><td class="mono">hash</td><td></td><td>Contains either a <a href="/api/resources/users/#the-user-object">user object</a> or a <a href="/api/resources/users/#the-mini-user-object">mini user object</a> (<strong>default</strong>).</td></tr>
+<tr><td class="mono">hidden</td><td class="mono">bool</td><td></td><td>Hidden or not in listings. Example, API search and Catalog.</td></tr>
 <tr><td class="mono">image</td><td class="mono">string</td><td></td><td>URL to thing image</td></tr>
+<tr><td class="mono">flattred</td><td class="mono">bool</td><td><a href="/api/#authenticate">authenticated</a></td><td>Has the authenticated user flattred the thing</td></tr>
+<tr><td class="mono">last_flattr_at</td><td class="mono">int</td><td>owner</td><td>Last time flattred. Format is unixtime. Only available if the authenticated user owns the thing.</td></tr>
+<tr><td class="mono">updated_at</td><td class="mono">int</td><td>owner</td><td>Last time updated. Format is unixtime. Only available if the authenticated user owns the thing.</td></tr>
 </tbody></table></p>
 <h4 id="the-mini-thing-object">The Mini Thing object</h4>
 <p><table>
