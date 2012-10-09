@@ -60,16 +60,16 @@
 </ul>
 
 <p>All resource paths are relative to the API-endpoint.</p>
+<h2 id="create-a-application">Create a application</h2>
+<p>To use the API you need to <a href="http://flattr.com/apps">register a application</a> and use the assigned Client ID and Client Secret. Client Secrets should be kept secret and not be revealed to anyone else than the application owner.</p>
 <h2 id="authorization">Authorization</h2>
-<p>To gain access to private data clients need to use <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-21">OAuth 2</a>. OAuth 2 is a standardized protocol for how to allow end users to authorize clients to gain access to their private data in the form of access tokens. OAuth 2 rely on separate standards for the access tokens - we currently use <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-08">Bearer tokens</a> which are the simplest and most widespread token type.</p>
-
-<p>To use OAuth 2 you need to <a href="http://flattr.com/apps">register your application</a> and use the assigned Client ID and Client Secret. Client Secrets should be kept secret and not be revealed to anyone else than the application owner.</p>
+<p>To gain access to private data we use <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-21">OAuth 2</a> for authentication. OAuth 2 is a standardized protocol for how to allow end users to authorize clients to gain access to their private data in the form of access tokens. OAuth 2 rely on separate standards for the access tokens - we currently use <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-08">Bearer tokens</a> which are the simplest and most widespread token type.</p>
 <h3 id="authenticate">Authenticate</h3>
 <p>To get a token you need to use the <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-21#section-4.1">authorization code flow</a>.</p>
 
 <ul>
 <li><strong>response_type</strong> ( <em>Required</em> ) - This can be set to <code>code</code> or <code>token</code></li>
-<li><strong>client_id</strong> ( <em>Required</em> ) - The client_id found at <a href="http://flattr.com/apps">http://flattr.com/apps</a></li>
+<li><strong>client_id</strong> ( <em>Required</em> ) - The client id</li>
 <li><strong>redirect_uri</strong> ( <em>Optional</em> ) -  The callback URL supplied when creating
 the application. It needs to be identical or else the authentication
 will fail.</li>
@@ -84,7 +84,7 @@ redirect_uri=http://localhost
 </code></pre>
 <p>If the end user authorize your application the user will be redirect to
 your specified redirect_uri which must be in the <em>callback_domain</em> you
-specified when you registered your app at <a href="https://flattr.com/apps">https://flattr.com/apps</a> along
+specified when you registered your app at <a href="https://flattr.com/apps/new">https://flattr.com/apps/new</a> along
 side with a parameter named <code>code</code> whom you can exchange for an
 access token.</p>
 <h3 id="request-an-access-token">Request an access token</h3>
