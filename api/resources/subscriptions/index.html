@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>Subscriptions - Flattr Developers</title>
+
+  <link rel="stylesheet" href="/styles/base.css">
+  <link rel="stylesheet" href="/styles/custom.css">
+  <link rel="stylesheet" href="/styles/syntax.css">
+  <link rel="shortcut icon" href="/favicon.ico">
+	<link rel="payment" type="text/html" href="https://flattr.com/submit/auto?url=http%3A%2F%2Fdevelopers.flattr.net">
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/">Flattr Developer Platform</a></h1>
+
+    <ul class="nav">
+      <li>
+        <a href="/api">REST API</a>
+        <ul>
+          <li><a href="/api/">Introduction</a></li>
+          <li><a href="/api/#authorization">Authorization</a></li>
+          <li>
+            <span>Resources</span>
+            <ul>
+              <li><a href="/api/resources/flattrs">Flattrs</a></li>
+              <li><a href="/api/resources/things">Things</a></li>
+              <li><a href="/api/resources/subscriptions">Subscriptions</a></li>
+              <li><a href="/api/resources/users">Users</a></li>
+              <li><a href="/api/resources/activities">Activities</a></li>
+              <li><a href="/api/resources/categories">Categories</a></li>
+              <li><a href="/api/resources/languages">Languages</a></li>
+            </ul>
+          </li>
+          <li><a href="http://console.apihq.com/api/flattr" target="_blank">Console</a></li>
+          <li><a href="/api/changelog">Changelog</a></li>
+          <li><a href="/api/libraries">Clients</a></li>
+          <li><a href="/api/policy">Policy</a></li>
+        </ul>
+      </li>
+      <li><a href="/button">Embedded buttons</a></li>
+      <li><a href="/auto-submit">Auto-submit URL</a></li>
+      <li><a href="/feed">Flattr in feeds and HTML</a></li>
+      <li><a href="/partner">Partner site integration</a></li>
+      <li><a href="/tools">Tools</a></li>
+      <li><a href="/api/questions">Questions</a></li>
+
+    </ul>
+
+    <div class="page">
+      <div class="header">
+        <h2>Subscriptions</h2>
+        <div class="subtitle"></div>
+      </div>
+      <div id="toc"><h5>Table of contents</h5>
+<ul>
+<li><a href="#list-subscriptions">List subscriptions</a></li>
+<li><a href="#create-a-new-subscription">Create a new subscription</a></li>
+<li><a href="#pause-and-start-subscriptions">Pause and start subscriptions</a></li>
+<li><a href="#delete-a-subscription">Delete a subscription</a></li></ul></div>
+<h4 id="list-subscriptions">List subscriptions</h4>
+<p><strong>Scope required</strong>: flattr</p>
+<h5 >Request</h5><pre class="highlight"><code>GET https://api.flattr.com/rest/v2/user/subscriptions
+</code></pre><h5 >Example response</h5>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
+
+<div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;subscription&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;active&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">&quot;created_at&quot;</span><span class="o">:</span> <span class="mi">1350654024</span><span class="p">,</span>
+    <span class="s2">&quot;started_at&quot;</span><span class="o">:</span> <span class="mi">1351164964</span><span class="p">,</span>
+    <span class="s2">&quot;thing&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/things/423405&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/thing/423405&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">423405</span><span class="p">,</span>
+      <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;http://blog.flattr.net/2011/10/api-v2-beta-out-whats-changed/&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;language&quot;</span><span class="o">:</span> <span class="s2">&quot;en_GB&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;category&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;owner&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/users/flattr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/profile/flattr&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;flattr&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;hidden&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="s2">&quot;image&quot;</span><span class="o">:</span> <span class="s2">&quot;http://flattr.com/thing/image/4/2/3/4/0/5/medium.png&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;created_at&quot;</span><span class="o">:</span> <span class="mi">1319704532</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;api&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;flattrs&quot;</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+      <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;We have been working hard to deliver a great experience for developers and tried to build a good foundation for easily add new features. The API will remain in beta for a while for us to kill quirks and refine some of the resources, this means there might be big changes without notice for ...&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;API v2 beta out - what&#39;s changed?&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;flattred&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="s2">&quot;subscribed&quot;</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre>
+</div>
+<h4 id="create-a-new-subscription">Create a new subscription</h4>
+<p><strong>Scope required</strong>: flattr</p>
+<h5 >Request</h5><pre class="highlight"><code>POST https://api.flattr.com/rest/v2/things/:id/subscriptions
+</code></pre><h5 >Example response</h5>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Successfully subscribed to Thing&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;thing&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;thing&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/things/423405&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/thing/423405&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">423405</span><span class="p">,</span>
+    <span class="s2">&quot;flattrs&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;http://blog.flattr.net/2011/10/api-v2-beta-out-whats-changed/&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;API v2 beta out - what&#39;s changed?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;image&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/thing/image/4/2/3/4/0/5/medium.png&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>
+<h5 >Errors</h5>
+<ul>
+<li><code>insufficient_scope</code> (403 Forbidden) - <strong>flattr</strong> scope needed</li>
+<li><code>thing_owner</code> (403 Forbidden) - Resource owner cannot subscribe to their own things</li>
+<li><code>subscribed</code> (403 Forbidden) - Resource owner already subscribed to thing</li>
+<li><code>not_found</code> (404 Not found) - Thing not found</li>
+</ul>
+<h4 id="pause-and-start-subscriptions">Pause and start subscriptions</h4>
+<p><strong>Scope required</strong>: flattr</p>
+<h5 >Request</h5><pre class="highlight"><code>PUT https://api.flattr.com/rest/v2/things/:id/subscriptions
+</code></pre><h5 >Example response when started</h5>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;started&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Subscription started&quot;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<h5 >Example response when paused</h5>
+<pre class="headers"><code>HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;paused&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Subscription paused&quot;</span>
+<span class="p">}</span>
+</pre>
+</div>
+<h5 >Errors</h5>
+<ul>
+<li><code>insufficient_scope</code> (403 Forbidden) - <strong>flattr</strong> scope needed</li>
+<li><code>not_found</code> (404 Not found) - Not subscribed to a thing or no thing was found.</li>
+</ul>
+<h4 id="delete-a-subscription">Delete a subscription</h4>
+<p><strong>Scope required</strong>: flattr</p>
+<h5 >Request</h5><pre class="highlight"><code>DELETE https://api.flattr.com/rest/v2/things/:id/subscriptions
+</code></pre><h5 >Example response</h5>
+<pre class="headers"><code>HTTP/1.1 204 No Content
+Content-Type: application/json;charset=utf-8
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 999
+X-RateLimit-Current: 1
+X-RateLimit-Reset: 1342521939</code></pre>
+
+<p><br></p>
+<h5 >Errors</h5>
+<ul>
+<li><code>not_found</code> (404 Not found) - No thing or subscription found</li>
+</ul>
+
+    </div>
+    <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>
+
+  </div>
+
+  <script src="/js/ender.js"></script>
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-13236450-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
