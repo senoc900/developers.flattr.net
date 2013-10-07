@@ -62,7 +62,9 @@
 <h4 id="the-user-object">The User object</h4>
 <p><table>
 <thead><tr><th>Field</th><th>Type</th><th>Permission</th><th>Description</th></tr></thead>
-<tbody><tr><td class="mono">type</td><td class="mono">string</td><td></td><td>Object type, set to <code>user</code>.</td></tr>
+<tbody>
+<tr><td class="mono">id</td><td class="mono">string</td><td></td><td>A unique identifier.</td></tr>
+<tr><td class="mono">type</td><td class="mono">string</td><td></td><td>Object type, set to <code>user</code>.</td></tr>
 <tr><td class="mono">resource</td><td class="mono">string</td><td></td><td>URL to the API resource</td></tr>
 <tr><td class="mono">link</td><td class="mono">string</td><td></td><td>URL to user on Flattr.com website</td></tr>
 <tr><td class="mono">username</td><td class="mono">string</td><td></td><td>Username on Flattr</td></tr>
@@ -80,7 +82,9 @@
 <h4 id="the-mini-user-object">The Mini User object</h4>
 <p><table>
 <thead><tr><th>Field</th><th>Type</th><th>Permission</th><th>Description</th></tr></thead>
-<tbody><tr><td class="mono">type</td><td class="mono">string</td><td></td><td>Object type, set to <code>user</code>.</td></tr>
+<tbody>
+<tr><td class="mono">id</td><td class="mono">string</td><td></td><td>A unique identifier.</td></tr>
+<tr><td class="mono">type</td><td class="mono">string</td><td></td><td>Object type, set to <code>user</code>.</td></tr>
 <tr><td class="mono">resource</td><td class="mono">string</td><td></td><td>URL to the API resource</td></tr>
 <tr><td class="mono">link</td><td class="mono">string</td><td></td><td>URL to user on Flattr.com website</td></tr>
 <tr><td class="mono">username</td><td class="mono">string</td><td></td><td>Username on Flattr</td></tr>
@@ -95,6 +99,7 @@ X-RateLimit-Current: 1
 X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;6lGWjl&quot;</span><span class="p">,</span>
   <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
   <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/users/flattr&quot;</span><span class="p">,</span>
   <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/profile/flattr&quot;</span><span class="p">,</span>
@@ -126,6 +131,7 @@ X-RateLimit-Current: 1
 X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;6lGWjl&quot;</span><span class="p">,</span>
   <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
   <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/users/flattr&quot;</span><span class="p">,</span>
   <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/profile/flattr&quot;</span><span class="p">,</span>
@@ -154,6 +160,7 @@ X-RateLimit-Current: 1
 X-RateLimit-Reset: 1342521939</code></pre>
 
 <div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;6lGWjl&quot;</span><span class="p">,</span>
   <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
   <span class="s2">&quot;resource&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.flattr.com/rest/v2/users/flattr&quot;</span><span class="p">,</span>
   <span class="s2">&quot;link&quot;</span><span class="o">:</span> <span class="s2">&quot;https://flattr.com/profile/flattr&quot;</span><span class="p">,</span>
@@ -178,7 +185,7 @@ X-RateLimit-Reset: 1342521939</code></pre>
   </div>
 
   <script src="/js/ender.js"></script>
-  
+
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
