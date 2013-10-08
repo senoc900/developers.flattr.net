@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 
-  <title>API Changelog - Flattr Developers</title>
+  <title>New user attributes - Flattr Developers</title>
 
   <link rel="stylesheet" href="/styles/base.css">
   <link rel="stylesheet" href="/styles/custom.css">
@@ -50,49 +50,22 @@
 
     <div class="page">
       <div class="header">
-        <h2>API Changelog</h2>
+        <h2>New user attributes</h2>
         <div class="subtitle"></div>
       </div>
       <p>
-All changes to the API will be posted here. The changes are available as a <a
-  href="http://feeds.feedburner.com/FlattrApiChangelog">atom feed</a>. You can also follow our twitter account <a href="http://twitter.com/flattrapi">@FlattrAPI</a> to get the latest news about everything concerning the API.
-</p>
+	  The <a href="/api/resources/users#the-user-object">user object</a> just got two new attributes, id and active_supporter.
+        The id is a unique identifier that unlike the username, can't be changed.
+        Although it can't be used as an identifier in API calls yet, you should
+        use it whenever your application needs a unique identifier.
+      </p>
 
-<span class="light">2013-10-08</span> - <a href="/api/changelog/new_user_attributes/">The user object got new attributes</a><br/>
-
-<span class="light">2012-10-25</span> - <a href="/api/changelog/add_subscription_resource/">Add subscription resource</a><br/>
-
-<span class="light">2012-07-17</span> - <a href="/api/changelog/add_rate_limit/">Add rate limit resource</a><br/>
-
-<span class="light">2012-05-11</span> - <a href="/api/changelog/flattrs_show_on_things/">Flattrs show on things</a><br/>
-
-<span class="light">2012-04-30</span> - <a href="/api/changelog/clarified_flattr_resource/">Clarified flattr resource</a><br/>
-
-<span class="light">2012-03-23</span> - <a href="/api/changelog/new_scope_added_email/">New scope added email</a><br/>
-
-<span class="light">2012-03-09</span> - <a href="/api/changelog/receive_full_objects/">Receive full resources instead of small</a><br/>
-
-<span class="light">2012-02-10</span> - <a href="/api/changelog/thing_flattrs/">Fetch who flattrd a thing</a><br/>
-
-<span class="light">2012-01-30</span> - <a href="/api/changelog/add_sort_to_things_search/">Add sorting to things search</a><br/>
-
-<span class="light">2012-01-26</span> - <a href="/api/changelog/flattr_shows_thing/">Flattr resource now returns a thing</a><br/>
-
-<span class="light">2012-01-25</span> - <a href="/api/changelog/remove_attribute_flattrs_current_period/">Remove flattrs_current_period attribute from thing resource</a><br/>
-
-<span class="light">2012-01-24</span> - <a href="/api/changelog/add_image_to_thing/">Added image attribute to thing</a><br/>
-
-<span class="light">2012-01-10</span> - <a href="/api/changelog/activities/">Added activities resource</a><br/>
-
-<span class="light">2012-01-09</span> - <a href="/api/changelog/auto_submit/">Flattr and lookup auto submit URLs</a><br/>
-
-<span class="light">2012-01-09</span> - <a href="/api/changelog/new_search/">Search things</a><br/>
-
-<span class="light">2011-11-10</span> - <a href="/api/changelog/rename_latest_click/">Rename thing attribute from latest_click to last_flattr_at</a><br/>
-
-<span class="light">2011-10-31</span> - <a href="/api/changelog/add_avatar/">Add avatar to user resource</a><br/>
-
-<span class="light">2011-10-07</span> - <a href="/api/changelog/add_and_delete_things/">Delete and update things</a><br/>
+      <p>
+        The second new attribute is active_supporter, which tells you if the user
+        can flattr other users or not. Until now the only way to tell was to
+        to actually flattr something and look at the response, an error meant
+        the user couldn't. I think you will agree that this way is cleaner.
+      </p>
 
     </div>
     <address>Visit <a href="http://flattr.com/">Flattr.com</a> to learn more about Flattr.</address>
